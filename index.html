@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 ValsPick - Find the Perfect Valentine's Gift</title>
+    <!-- Google Analytics - Replace GA_MEASUREMENT_ID with your actual ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8a80 50%, #ffd54f 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts Animation */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: floatUp 6s ease-in infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .countdown {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 15px 25px;
+            margin: 20px auto;
+            display: inline-block;
+            color: white;
+            font-weight: 600;
+        }
+
+        .countdown span {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            color: #ff6b9d;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #555;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b9d;
+            box-shadow: 0 0 20px rgba(255,107,157,0.2);
+        }
+
+        /* Checkbox Group */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .checkbox-item {
+            position: relative;
+        }
+
+        .checkbox-item input {
+            display: none;
+        }
+
+        .checkbox-item label {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #f5f5f5;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .checkbox-item input:checked + label {
+            background: linear-gradient(135deg, #ff6b9d, #ff8a80);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Button */
+        .btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8a80 100%);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,107,157,0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Results Section */
+        #results {
+            display: none;
+        }
+
+        .gift-card {
+            background: linear-gradient(135deg, #fff5f7 0%, #fff 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 2px solid #ffe0e8;
+            transition: all 0.3s ease;
+        }
+
+        .gift-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,107,157,0.2);
+        }
+
+        .gift-card h3 {
+            color: #ff6b9d;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gift-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .gift-card .price {
+            background: linear-gradient(135deg, #ff6b9d, #ff8a80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .gift-card .where {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        .gift-card .where a {
+            color: #ff6b9d;
+            text-decoration: none;
+        }
+
+        /* WhatsApp CTA */
+        .whatsapp-cta {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .whatsapp-cta h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .whatsapp-cta p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: #25d366;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .whatsapp-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #25d366;
+        }
+
+        /* Back Button */
+        .back-btn {
+            background: transparent;
+            border: 2px solid #ff6b9d;
+            color: #ff6b9d;
+            margin-top: 15px;
+        }
+
+        .back-btn:hover {
+            background: #ff6b9d;
+            color: white;
+        }
+
+        /* Ad Banner */
+        .ad-banner {
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ad-banner::before {
+            content: "Sponsored";
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 0.7rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ad-banner a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .ad-banner img {
+            max-width: 100%;
+            border-radius: 12px;
+        }
+
+        .ad-banner .ad-text {
+            padding: 10px;
+        }
+
+        .ad-banner .ad-text h4 {
+            color: #ff6b9d;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .ad-banner .ad-text p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .ad-banner .ad-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b9d, #ff8a80);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .ad-placeholder {
+            background: linear-gradient(135deg, #f5f5f5, #eee);
+            border: 2px dashed #ddd;
+            border-radius: 15px;
+            padding: 30px 20px;
+            color: #999;
+        }
+
+        .ad-placeholder p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .ad-placeholder .contact-ad {
+            color: #ff6b9d;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-heart {
+            font-size: 4rem;
+            animation: loadingPulse 0.8s ease-in-out infinite;
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        .loading p {
+            color: #ff6b9d;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .card {
+                padding: 20px;
+            }
+            .checkbox-item label {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">💝</div>
+            <h1>ValsPick</h1>
+            <p>Find the perfect Valentine's gift in seconds!</p>
+            <div class="countdown">
+                ⏰ <span id="countdown"></span> until Valentine's Day!
+            </div>
+        </div>
+
+        <!-- Ad Banner Section -->
+        <div class="ad-banner" id="adBanner">
+            <div class="ad-placeholder">
+                <p>🎯 <strong>Advertise Here!</strong></p>
+                <p>Reach lovers looking for the perfect gift</p>
+                <p><a href="https://wa.me/233248560363?text=Hi!%20I%20want%20to%20advertise%20on%20ValsPick" class="contact-ad">Contact Tuffguy →</a></p>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div id="formSection">
+            <div class="card">
+                <h2>🎯 Tell us about your special person</h2>
+                
+                <form id="giftForm">
+                    <div class="form-group">
+                        <label>What's their vibe? (pick all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="romantic" name="interests" value="romantic">
+                                <label for="romantic">💕 Romantic</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="foodie" name="interests" value="foodie">
+                                <label for="foodie">🍫 Foodie</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fashionista" name="interests" value="fashionista">
+                                <label for="fashionista">👗 Fashionista</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="techie" name="interests" value="techie">
+                                <label for="techie">📱 Techie</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fitness" name="interests" value="fitness">
+                                <label for="fitness">💪 Fitness</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="homebody" name="interests" value="homebody">
+                                <label for="homebody">🏠 Homebody</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="adventurer" name="interests" value="adventurer">
+                                <label for="adventurer">✈️ Adventurer</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="creative" name="interests" value="creative">
+                                <label for="creative">🎨 Creative</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select id="gender" required>
+                            <option value="">Select...</option>
+                            <option value="female">For Her 👩</option>
+                            <option value="male">For Him 👨</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your relationship</label>
+                        <select id="relationship" required>
+                            <option value="">Select...</option>
+                            <option value="new">Just started dating 🌱</option>
+                            <option value="dating">Been together a while 💑</option>
+                            <option value="serious">Very serious / Engaged 💍</option>
+                            <option value="married">Married 👫</option>
+                            <option value="crush">It's a crush... 😏</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your budget (GHS)</label>
+                        <select id="budget" required>
+                            <option value="">Select...</option>
+                            <option value="low">Under GHS 100 💚</option>
+                            <option value="medium">GHS 100 - 300 💛</option>
+                            <option value="high">GHS 300 - 500 🧡</option>
+                            <option value="premium">GHS 500+ ❤️</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Anything else we should know? (optional)</label>
+                        <textarea id="extra" rows="3" placeholder="E.g., She loves sunflowers, He's allergic to nuts..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        Find Perfect Gifts 💝
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="card">
+                <div class="loading-heart">💝</div>
+                <p>Finding perfect gifts for your love...</p>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results">
+            <div class="card">
+                <h2>🎁 Perfect Picks for Your Valentine!</h2>
+                <div id="giftResults"></div>
+            </div>
+
+            <div class="whatsapp-cta">
+                <h3>😩 No time to shop?</h3>
+                <p>Let us handle everything! We'll get the gift and deliver it with love 💕</p>
+                <a href="" id="whatsappLink" class="whatsapp-btn" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Chat with Tuff
+                </a>
+            </div>
+
+            <button class="btn back-btn" onclick="showForm()">
+                ← Try Different Options
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Made with 💕 in Ghana</p>
+            <p>Created by <strong>Tuffguy</strong> 🔥</p>
+            <p>© 2026 ValsPick</p>
+        </div>
+    </div>
+
+    <script>
+        // Gift Database
+        const gifts = {
+            female: {
+                romantic: [
+                    { name: "Luxury Rose Bouquet", emoji: "🌹", desc: "50 premium red roses arranged beautifully", price: { low: null, medium: "GHS 150-250", high: "GHS 250-400", premium: "GHS 400+" }, where: "Flower shops (Accra, Kumasi, Takoradi), Online: Reapp, Jumia" },
+                    { name: "Personalized Love Letter Set", emoji: "💌", desc: "Handcrafted stationery with custom calligraphy", price: { low: "GHS 50-80", medium: "GHS 80-150", high: null, premium: null }, where: "Makola, Kejetia Market, local craft vendors" },
+                    { name: "Couples Spa Day", emoji: "💆‍♀️", desc: "Full relaxation package for two", price: { low: null, medium: null, high: "GHS 350-500", premium: "GHS 500+" }, where: "Spas in Accra, Kumasi, Takoradi • Golden Tulip, Kempinski" },
+                ],
+                foodie: [
+                    { name: "Gourmet Chocolate Box", emoji: "🍫", desc: "Premium Belgian chocolates, beautifully packaged", price: { low: "GHS 60-100", medium: "GHS 100-200", high: "GHS 200-350", premium: null }, where: "Shoprite, Melcom (all branches), Marina Mall, Kumasi City Mall" },
+                    { name: "Romantic Dinner for Two", emoji: "🍽️", desc: "Fine dining experience at a top restaurant", price: { low: null, medium: "GHS 200-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Top restaurants in your city • Accra, Kumasi, Takoradi, Cape Coast" },
+                    { name: "Dessert & Wine Hamper", emoji: "🍷", desc: "Curated selection of treats and fine wine", price: { low: null, medium: "GHS 150-280", high: "GHS 280-450", premium: null }, where: "Palace, Shoprite, Koala • Nationwide delivery via Jumia/Glovo" },
+                ],
+                fashionista: [
+                    { name: "Designer Perfume", emoji: "✨", desc: "Signature scent from top brands", price: { low: null, medium: "GHS 180-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Melcom, Shoprite (nationwide), Kumasi City Mall, Takoradi Mall" },
+                    { name: "Statement Jewelry Set", emoji: "💎", desc: "Elegant necklace and earring combo", price: { low: "GHS 50-100", medium: "GHS 100-250", high: "GHS 250-450", premium: "GHS 450+" }, where: "Local jewelers, Makola, Kejetia, Takoradi Market Circle" },
+                    { name: "Luxury Handbag", emoji: "👜", desc: "Trendy bag she'll love showing off", price: { low: null, medium: null, high: "GHS 300-500", premium: "GHS 500+" }, where: "Accra Mall, West Hills, Kumasi City Mall, Online: Jumia" },
+                ],
+                techie: [
+                    { name: "Wireless Earbuds", emoji: "🎧", desc: "Premium sound quality for her playlist", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Telefonika, CompuGhana, Franko Trading (nationwide)" },
+                    { name: "Smart Watch", emoji: "⌚", desc: "Fitness tracking meets fashion", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Telefonika, Franko Trading, Melcom Tech sections" },
+                    { name: "Kindle E-Reader", emoji: "📱", desc: "For the bookworm who loves convenience", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "CompuGhana, Jumia Ghana, Amazon (shipped)" },
+                ],
+                fitness: [
+                    { name: "Yoga Mat & Accessories Set", emoji: "🧘‍♀️", desc: "Premium mat with blocks and strap", price: { low: "GHS 80-100", medium: "GHS 120-200", high: null, premium: null }, where: "Decathlon, Game, Melcom Sports (all cities)" },
+                    { name: "Fitness Tracker", emoji: "💪", desc: "Track workouts and health metrics", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: null }, where: "Franko Trading, Telefonika, Jumia (nationwide delivery)" },
+                    { name: "Gym Membership + PT Sessions", emoji: "🏋️‍♀️", desc: "3-month membership with personal training", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "Local gyms in your city • Phoenix, Athlete's Foot, D-Gym" },
+                ],
+                homebody: [
+                    { name: "Cozy Blanket & Candle Set", emoji: "🕯️", desc: "Soft throw blanket with scented candles", price: { low: "GHS 70-100", medium: "GHS 120-200", high: null, premium: null }, where: "Mr. Price Home, Game, Melcom Home (nationwide)" },
+                    { name: "Self-Care Spa Kit", emoji: "🛁", desc: "Bath bombs, face masks, and relaxation essentials", price: { low: "GHS 60-100", medium: "GHS 100-200", high: "GHS 200-350", premium: null }, where: "Shoprite, Melcom, local pharmacies (all cities)" },
+                    { name: "Netflix & Snacks Hamper", emoji: "🍿", desc: "Movie night essentials curated with love", price: { low: "GHS 50-100", medium: "GHS 100-180", high: null, premium: null }, where: "Custom made • Shoprite, Maxmart, local supermarkets" },
+                ],
+                adventurer: [
+                    { name: "Weekend Getaway Package", emoji: "🏖️", desc: "2-night stay at a beautiful resort", price: { low: null, medium: null, high: null, premium: "GHS 800+" }, where: "Aqua Safari, Coconut Grove, Cape Coast, Volta Region resorts" },
+                    { name: "Adventure Experience Voucher", emoji: "🎢", desc: "Zip-lining, canopy walk, or water sports", price: { low: null, medium: "GHS 150-300", high: "GHS 300-500", premium: null }, where: "Kakum (Cape Coast), Boti Falls, Wli Falls, Ada Foah" },
+                    { name: "Travel Accessories Kit", emoji: "✈️", desc: "Neck pillow, luggage tags, and travel organizers", price: { low: "GHS 60-100", medium: "GHS 100-200", high: null, premium: null }, where: "Game, Melcom, malls nationwide, Jumia" },
+                ],
+                creative: [
+                    { name: "Art Supplies Set", emoji: "🎨", desc: "Premium paints, brushes, and canvas", price: { low: "GHS 70-100", medium: "GHS 120-250", high: "GHS 250-400", premium: null }, where: "Kingdom Books, Art Centre Accra, bookshops in Kumasi/Takoradi" },
+                    { name: "Photography Session", emoji: "📸", desc: "Professional couples photoshoot", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Local photographers in your city" },
+                    { name: "DIY Craft Kit", emoji: "✂️", desc: "Make something together - pottery, jewelry, etc.", price: { low: "GHS 50-100", medium: "GHS 100-180", high: null, premium: null }, where: "Art Centre, craft vendors, local markets" },
+                ],
+            },
+            male: {
+                romantic: [
+                    { name: "Personalized Watch", emoji: "⌚", desc: "Elegant timepiece with custom engraving", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Watch stores in malls, Franko Trading, Jumia Ghana" },
+                    { name: "Memory Photo Book", emoji: "📖", desc: "Custom printed book of your best moments", price: { low: "GHS 80-100", medium: "GHS 120-200", high: null, premium: null }, where: "Photobook Ghana, Printzilla, local print shops" },
+                    { name: "Love Coupons + Date Night", emoji: "💝", desc: "Handmade coupons for special treats and experiences", price: { low: "GHS 30-80", medium: null, high: null, premium: null }, where: "DIY / Custom made • We can help!" },
+                ],
+                foodie: [
+                    { name: "Whiskey/Wine Collection", emoji: "🥃", desc: "Premium bottle(s) of his favorite drink", price: { low: null, medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Palace, Shoprite, Koala, Melcom (nationwide)" },
+                    { name: "BBQ & Grill Set", emoji: "🔥", desc: "Premium grilling tools for the meat lover", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Game, Melcom, MaxMart (all cities)" },
+                    { name: "Steak Dinner Experience", emoji: "🥩", desc: "Fine dining at a top steakhouse", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Top restaurants in Accra, Kumasi, Takoradi, Cape Coast" },
+                ],
+                fashionista: [
+                    { name: "Designer Cologne", emoji: "🌟", desc: "Signature scent he'll love", price: { low: null, medium: "GHS 180-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Melcom, Shoprite, malls nationwide, Jumia" },
+                    { name: "Leather Wallet", emoji: "👔", desc: "Premium quality genuine leather", price: { low: "GHS 60-100", medium: "GHS 120-250", high: "GHS 280-450", premium: null }, where: "Malls, leather goods shops, Makola, Kejetia Market" },
+                    { name: "Designer Sunglasses", emoji: "🕶️", desc: "Stylish shades for the cool guy", price: { low: null, medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Optical stores nationwide, malls, Jumia" },
+                ],
+                techie: [
+                    { name: "Wireless Earbuds", emoji: "🎧", desc: "Premium sound quality", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Telefonika, Franko Trading, CompuGhana (nationwide)" },
+                    { name: "Gaming Accessories", emoji: "🎮", desc: "Controller, headset, or game pass", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Game stores, CompuGhana, Franko, Jumia Ghana" },
+                    { name: "Smart Home Gadget", emoji: "🔌", desc: "Smart speaker, lights, or useful tech", price: { low: "GHS 60-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Telefonika, Franko Trading, Jumia (delivery nationwide)" },
+                ],
+                fitness: [
+                    { name: "Gym Bag & Accessories", emoji: "🎒", desc: "Quality bag with water bottle and towel", price: { low: "GHS 70-100", medium: "GHS 120-200", high: null, premium: null }, where: "Decathlon, Game, Melcom Sports (all cities)" },
+                    { name: "Fitness Watch", emoji: "⌚", desc: "Track workouts and stay motivated", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Franko Trading, Telefonika, Jumia (nationwide)" },
+                    { name: "Supplements Hamper", emoji: "💪", desc: "Protein, pre-workout, and vitamins", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Health stores, pharmacies, gyms (all cities)" },
+                ],
+                homebody: [
+                    { name: "Gaming Subscription", emoji: "🎮", desc: "PS Plus, Xbox Game Pass, or streaming service", price: { low: "GHS 50-100", medium: "GHS 100-200", high: null, premium: null }, where: "Online purchase • We can help set it up!" },
+                    { name: "Comfy Loungewear Set", emoji: "👕", desc: "Quality joggers and hoodie combo", price: { low: "GHS 80-100", medium: "GHS 120-250", high: "GHS 280-400", premium: null }, where: "Mr. Price, Game, Melcom, local boutiques" },
+                    { name: "Snacks & Movie Hamper", emoji: "🍿", desc: "His favorite snacks + streaming voucher", price: { low: "GHS 60-100", medium: "GHS 100-180", high: null, premium: null }, where: "Custom made • Shoprite, MaxMart, local supermarkets" },
+                ],
+                adventurer: [
+                    { name: "Weekend Getaway Package", emoji: "🏕️", desc: "2-night adventure trip", price: { low: null, medium: null, high: null, premium: "GHS 800+" }, where: "Volta Region, Cape Coast, Kakum, Northern Ghana" },
+                    { name: "Adventure Gear", emoji: "🧭", desc: "Backpack, flashlight, multi-tool", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-450", premium: null }, where: "Decathlon, Game, outdoor stores, Jumia" },
+                    { name: "Experience Voucher", emoji: "🚀", desc: "Quad biking, paintball, or kayaking", price: { low: null, medium: "GHS 150-300", high: "GHS 300-500", premium: null }, where: "Experience providers • Ada, Akosombo, Cape Coast" },
+                ],
+                creative: [
+                    { name: "Music Gear", emoji: "🎸", desc: "Accessories for his instrument or music setup", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Music shops in Accra, Kumasi • Online: Jumia, Jiji" },
+                    { name: "Photography Accessories", emoji: "📷", desc: "Tripod, lens filters, or camera bag", price: { low: "GHS 60-100", medium: "GHS 150-300", high: "GHS 300-500", premium: null }, where: "CompuGhana, photo stores, Jumia Ghana" },
+                    { name: "Workshop/Class Voucher", emoji: "🎨", desc: "Learn something new together", price: { low: "GHS 80-100", medium: "GHS 150-250", high: "GHS 300-400", premium: null }, where: "Schools/studios in your city" },
+                ],
+            },
+            other: {} // Will copy from appropriate based on context
+        };
+
+        // Copy gifts for 'other' gender (mix of both)
+        gifts.other = { ...gifts.female };
+
+        // Default romantic gifts for any interest
+        const defaultGifts = {
+            female: [
+                { name: "Flower Bouquet & Chocolates", emoji: "💐", desc: "Classic Valentine's combo that never fails", price: { low: "GHS 80-100", medium: "GHS 150-250", high: "GHS 280-400", premium: "GHS 450+" }, where: "Flower shops, Shoprite, Melcom (nationwide)" },
+                { name: "Spa Gift Voucher", emoji: "💆‍♀️", desc: "Let her relax and feel pampered", price: { low: null, medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Spas in your city • We'll find the best one!" },
+            ],
+            male: [
+                { name: "Watch & Cologne Set", emoji: "⌚", desc: "Timeless combo for the stylish man", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Melcom, Shoprite, malls, Franko Trading (nationwide)" },
+                { name: "Experience Gift Card", emoji: "🎁", desc: "Restaurant, spa, or activity of choice", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Various stores in your city" },
+            ],
+            other: [
+                { name: "Personalized Gift Hamper", emoji: "🎁", desc: "Curated selection of their favorite things", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-500", premium: "GHS 500+" }, where: "Custom made • Let us handle it!" },
+            ]
+        };
+
+        // Countdown to Valentine's Day
+        function updateCountdown() {
+            const valentines = new Date('2026-02-14T00:00:00');
+            const now = new Date();
+            const diff = valentines - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            if (days > 0) {
+                document.getElementById('countdown').textContent = `${days} days, ${hours} hours`;
+            } else if (hours > 0) {
+                document.getElementById('countdown').textContent = `${hours} hours`;
+            } else {
+                document.getElementById('countdown').textContent = `It's Valentine's Day! 💕`;
+            }
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
+        // Floating Hearts
+        function createHearts() {
+            const container = document.getElementById('heartsBg');
+            const hearts = ['💕', '💝', '💖', '💗', '❤️', '💘', '💓'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // Form Submission
+        document.getElementById('giftForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
+            const gender = document.getElementById('gender').value;
+            const relationship = document.getElementById('relationship').value;
+            const budget = document.getElementById('budget').value;
+            const extra = document.getElementById('extra').value;
+
+            // Show loading
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+
+            // Simulate loading then show results
+            setTimeout(() => {
+                generateResults(interests, gender, relationship, budget, extra);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('results').style.display = 'block';
+            }, 1500);
+        });
+
+        function generateResults(interests, gender, relationship, budget, extra) {
+            const resultsContainer = document.getElementById('giftResults');
+            resultsContainer.innerHTML = '';
+
+            let selectedGifts = [];
+            const genderGifts = gifts[gender] || gifts.female;
+
+            // Get gifts based on interests
+            if (interests.length > 0) {
+                interests.forEach(interest => {
+                    if (genderGifts[interest]) {
+                        genderGifts[interest].forEach(gift => {
+                            if (gift.price[budget]) {
+                                selectedGifts.push(gift);
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Add defaults if not enough gifts
+            if (selectedGifts.length < 3) {
+                const defaults = defaultGifts[gender] || defaultGifts.female;
+                defaults.forEach(gift => {
+                    if (gift.price[budget] && !selectedGifts.find(g => g.name === gift.name)) {
+                        selectedGifts.push(gift);
+                    }
+                });
+            }
+
+            // Shuffle and take top 4
+            selectedGifts = selectedGifts.sort(() => Math.random() - 0.5).slice(0, 4);
+
+            // If still no gifts, show budget-appropriate defaults
+            if (selectedGifts.length === 0) {
+                selectedGifts = [
+                    { name: "Custom Gift Hamper", emoji: "🎁", desc: "We'll curate the perfect selection based on your details!", price: { [budget]: "Within your budget" }, where: "Let Tuff handle it!" }
+                ];
+            }
+
+            // Render gifts
+            selectedGifts.forEach(gift => {
+                const card = document.createElement('div');
+                card.className = 'gift-card';
+                card.innerHTML = `
+                    <h3>${gift.emoji} ${gift.name}</h3>
+                    <p>${gift.desc}</p>
+                    <div class="price">${gift.price[budget]}</div>
+                    <div class="where">📍 Where: ${gift.where}</div>
+                `;
+                resultsContainer.appendChild(card);
+            });
+
+            // Update WhatsApp link
+            const message = encodeURIComponent(`Hi! I'm looking for a Valentine's gift 💝\n\nBudget: ${budget}\nFor: ${gender}\nInterests: ${interests.join(', ') || 'Not specified'}\n\nCan you help me get something special?`);
+            document.getElementById('whatsappLink').href = `https://wa.me/233248560363?text=${message}`;
+        }
+
+        function showForm() {
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('formSection').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
