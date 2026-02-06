@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💝 ValsPick - Find the Perfect Valentine's Gift</title>
-    <!-- Google Analytics - Replace GA_MEASUREMENT_ID with your actual ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <title>🎁 Pinigifts - Perfect Gifts for Every Occasion</title>
+    
+    <!-- SEO & Social Sharing -->
+    <meta name="description" content="Find the perfect gift for any occasion! Valentine's, Ramadan, Birthdays, Weddings, Christmas, Easter & more. Personalized suggestions with delivery across Ghana. 🎁">
+    <meta name="keywords" content="gifts, Ghana, Accra, Kumasi, Valentine's, Ramadan, Eid, Birthday, Wedding, Christmas, Easter, Graduation">
+    <meta name="author" content="Tuffguy">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="🎁 Pinigifts - Perfect Gifts for Every Occasion">
+    <meta property="og:description" content="Find the perfect gift in seconds! Personalized suggestions with delivery across Ghana 🇬🇭">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=1200&h=630&fit=crop">
+    <meta property="og:url" content="https://pinigifts.site">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🎁 Pinigifts - Perfect Gifts for Every Occasion">
+    <meta name="twitter:description" content="Personalized gift suggestions with delivery across Ghana! 🇬🇭">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EX1R9578EY"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
+        gtag('config', 'G-EX1R9578EY');
     </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -24,13 +47,60 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff6b9d 0%, #ff8a80 50%, #ffd54f 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background 0.5s ease;
         }
 
-        /* Floating Hearts Animation */
-        .hearts-bg {
+        /* Theme Variables */
+        :root {
+            --primary: #ff6b9d;
+            --secondary: #ff8a80;
+        }
+
+        body.theme-valentine { 
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8a80 50%, #ffd54f 100%); 
+            --primary: #ff6b9d; --secondary: #ff8a80;
+        }
+        body.theme-ramadan { 
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #c9a227 100%); 
+            --primary: #2d5a3d; --secondary: #c9a227;
+        }
+        body.theme-birthday { 
+            background: linear-gradient(135deg, #9c27b0 0%, #e91e63 50%, #ff9800 100%); 
+            --primary: #9c27b0; --secondary: #e91e63;
+        }
+        body.theme-wedding { 
+            background: linear-gradient(135deg, #8e7cc3 0%, #d5a6bd 50%, #f8e0e6 100%); 
+            --primary: #8e7cc3; --secondary: #d5a6bd;
+        }
+        body.theme-graduation { 
+            background: linear-gradient(135deg, #1e3a5f 0%, #3d5a80 50%, #c9a227 100%); 
+            --primary: #1e3a5f; --secondary: #c9a227;
+        }
+        body.theme-baby { 
+            background: linear-gradient(135deg, #a8d5e5 0%, #f8c8dc 50%, #fff8dc 100%); 
+            --primary: #7eb8c9; --secondary: #f8c8dc;
+        }
+        body.theme-housewarming { 
+            background: linear-gradient(135deg, #e07b53 0%, #f4a460 50%, #8fbc8f 100%); 
+            --primary: #e07b53; --secondary: #8fbc8f;
+        }
+        body.theme-condolence { 
+            background: linear-gradient(135deg, #4a4a4a 0%, #6b6b6b 50%, #9e9e9e 100%); 
+            --primary: #4a4a4a; --secondary: #8a8a8a;
+        }
+        body.theme-christmas { 
+            background: linear-gradient(135deg, #c41e3a 0%, #2e8b57 50%, #ffd700 100%); 
+            --primary: #c41e3a; --secondary: #2e8b57;
+        }
+        body.theme-easter { 
+            background: linear-gradient(135deg, #dda0dd 0%, #98fb98 50%, #fffacd 100%); 
+            --primary: #9370db; --secondary: #98fb98;
+        }
+
+        /* Floating Elements */
+        .floating-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -41,7 +111,7 @@
             z-index: 0;
         }
 
-        .floating-heart {
+        .floating-element {
             position: absolute;
             font-size: 20px;
             animation: floatUp 6s ease-in infinite;
@@ -49,20 +119,10 @@
         }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
         .container {
@@ -74,6 +134,55 @@
             min-height: 100vh;
         }
 
+        /* Occasion Selector */
+        .occasion-selector {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .occasion-selector h3 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .occasion-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .occasion-tab {
+            padding: 10px 14px;
+            border: none;
+            border-radius: 25px;
+            background: #f0f0f0;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .occasion-tab:hover {
+            transform: scale(1.05);
+        }
+
+        .occasion-tab.active {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
         /* Header */
         .header {
             text-align: center;
@@ -81,9 +190,10 @@
         }
 
         .logo {
-            font-size: 3rem;
+            font-size: 5rem;
             margin-bottom: 10px;
             animation: pulse 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.2));
         }
 
         @keyframes pulse {
@@ -117,7 +227,7 @@
         }
 
         .countdown span {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #fff;
         }
 
@@ -131,7 +241,7 @@
         }
 
         .card h2 {
-            color: #ff6b9d;
+            color: var(--primary);
             font-size: 1.3rem;
             margin-bottom: 20px;
             display: flex;
@@ -168,8 +278,8 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #ff6b9d;
-            box-shadow: 0 0 20px rgba(255,107,157,0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
         /* Checkbox Group */
@@ -200,7 +310,7 @@
         }
 
         .checkbox-item input:checked + label {
-            background: linear-gradient(135deg, #ff6b9d, #ff8a80);
+            background: var(--primary);
             color: white;
             transform: scale(1.05);
         }
@@ -209,7 +319,7 @@
         .btn {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(135deg, #ff6b9d 0%, #ff8a80 100%);
+            background: var(--primary);
             border: none;
             border-radius: 15px;
             color: white;
@@ -226,14 +336,10 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255,107,157,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        /* Results Section */
+        /* Results */
         #results {
             display: none;
         }
@@ -249,12 +355,12 @@
 
         .gift-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255,107,157,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .gift-card h3 {
-            color: #ff6b9d;
-            font-size: 1.2rem;
+            color: var(--primary);
+            font-size: 1.1rem;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -263,88 +369,48 @@
 
         .gift-card p {
             color: #666;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 12px;
             line-height: 1.5;
         }
 
         .gift-card .price {
-            background: linear-gradient(135deg, #ff6b9d, #ff8a80);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .gift-card .where {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #888;
             margin-top: 8px;
         }
 
-        .gift-card .where a {
-            color: #ff6b9d;
-            text-decoration: none;
-        }
-
-        /* WhatsApp CTA */
-        .whatsapp-cta {
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .whatsapp-cta h3 {
-            color: white;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .whatsapp-cta p {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: white;
-            color: #25d366;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .whatsapp-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: #25d366;
+        .gift-card .tip {
+            background: #fff3cd;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: #856404;
+            margin-top: 10px;
         }
 
         /* Back Button */
         .back-btn {
             background: transparent;
-            border: 2px solid #ff6b9d;
-            color: #ff6b9d;
+            border: 2px solid var(--primary);
+            color: var(--primary);
             margin-top: 15px;
         }
 
         .back-btn:hover {
-            background: #ff6b9d;
+            background: var(--primary);
             color: white;
+        }
+
+        /* Lead Capture */
+        .lead-capture h2 {
+            color: var(--primary);
         }
 
         /* Ad Banner */
@@ -356,7 +422,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
         .ad-banner::before {
@@ -366,61 +431,18 @@
             right: 12px;
             font-size: 0.7rem;
             color: #999;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .ad-banner a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .ad-banner img {
-            max-width: 100%;
-            border-radius: 12px;
-        }
-
-        .ad-banner .ad-text {
-            padding: 10px;
-        }
-
-        .ad-banner .ad-text h4 {
-            color: #ff6b9d;
-            margin-bottom: 5px;
-            font-size: 1rem;
-        }
-
-        .ad-banner .ad-text p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        .ad-banner .ad-cta {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff6b9d, #ff8a80);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
         }
 
         .ad-placeholder {
             background: linear-gradient(135deg, #f5f5f5, #eee);
             border: 2px dashed #ddd;
             border-radius: 15px;
-            padding: 30px 20px;
+            padding: 25px 20px;
             color: #999;
         }
 
-        .ad-placeholder p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-
         .ad-placeholder .contact-ad {
-            color: #ff6b9d;
+            color: var(--primary);
             font-weight: 600;
             text-decoration: none;
         }
@@ -433,20 +455,18 @@
             font-size: 0.85rem;
         }
 
-        .footer a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
+        .footer .flag {
+            font-size: 1.2rem;
         }
 
-        /* Loading Animation */
+        /* Loading */
         .loading {
             display: none;
             text-align: center;
             padding: 40px;
         }
 
-        .loading-heart {
+        .loading-icon {
             font-size: 4rem;
             animation: loadingPulse 0.8s ease-in-out infinite;
         }
@@ -456,114 +476,126 @@
             50% { transform: scale(1.3); opacity: 0.7; }
         }
 
-        .loading p {
-            color: #ff6b9d;
-            margin-top: 15px;
+        /* Music Toggle */
+        .music-toggle {
+            position: fixed;
+            bottom: 25px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-size: 0.9rem;
             font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .music-toggle.playing {
+            background: var(--primary);
+            color: white;
+            animation: musicPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+            50% { box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
         }
 
         /* Responsive */
         @media (max-width: 400px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            .card {
-                padding: 20px;
-            }
-            .checkbox-item label {
-                padding: 8px 14px;
-                font-size: 0.85rem;
-            }
+            .header h1 { font-size: 1.8rem; }
+            .card { padding: 20px; }
+            .occasion-tab { padding: 8px 10px; font-size: 0.75rem; }
         }
     </style>
 </head>
-<body>
-    <!-- Floating Hearts Background -->
-    <div class="hearts-bg" id="heartsBg"></div>
+<body class="theme-valentine">
+    <!-- Floating Background -->
+    <div class="floating-bg" id="floatingBg"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic"></audio>
+    
+    <!-- Music Toggle -->
+    <button class="music-toggle" id="musicToggle">
+        🎵 <span id="musicLabel">Play Music</span>
+    </button>
 
     <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">💝</div>
-            <h1>ValsPick</h1>
-            <p>Find the perfect Valentine's gift in seconds!</p>
-            <div class="countdown">
-                ⏰ <span id="countdown"></span> until Valentine's Day!
+        <!-- Occasion Selector -->
+        <div class="occasion-selector">
+            <h3>🎯 What's the occasion?</h3>
+            <div class="occasion-tabs" id="occasionTabs">
+                <button class="occasion-tab active" data-occasion="valentine">💝 Valentine's</button>
+                <button class="occasion-tab" data-occasion="ramadan">🌙 Ramadan</button>
+                <button class="occasion-tab" data-occasion="birthday">🎂 Birthday</button>
+                <button class="occasion-tab" data-occasion="wedding">💒 Wedding</button>
+                <button class="occasion-tab" data-occasion="graduation">🎓 Graduation</button>
+                <button class="occasion-tab" data-occasion="baby">👶 Baby</button>
+                <button class="occasion-tab" data-occasion="housewarming">🏠 Home</button>
+                <button class="occasion-tab" data-occasion="christmas">🎄 Christmas</button>
+                <button class="occasion-tab" data-occasion="easter">🐣 Easter</button>
+                <button class="occasion-tab" data-occasion="condolence">🕊️ Sympathy</button>
             </div>
         </div>
 
-        <!-- Ad Banner Section -->
-        <div class="ad-banner" id="adBanner">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo" id="logo">💝</div>
+            <h1 id="title">Pinigifts</h1>
+            <p id="subtitle">Find the perfect Valentine's gift in seconds!</p>
+            <div class="countdown" id="countdownBox">
+                ⏰ <span id="countdown"></span>
+            </div>
+        </div>
+
+        <!-- Ad Banner -->
+        <div class="ad-banner">
             <div class="ad-placeholder">
                 <p>🎯 <strong>Advertise Here!</strong></p>
-                <p>Reach lovers looking for the perfect gift</p>
-                <p><a href="https://wa.me/233248560363?text=Hi!%20I%20want%20to%20advertise%20on%20ValsPick" class="contact-ad">Contact Tuffguy →</a></p>
+                <p>Reach people looking for the perfect gift</p>
+                <p><a href="mailto:tuffguy6532@gmail.com?subject=Pinigifts%20Advertising" class="contact-ad">Get Featured →</a></p>
             </div>
         </div>
 
         <!-- Form Section -->
         <div id="formSection">
             <div class="card">
-                <h2>🎯 Tell us about your special person</h2>
+                <h2 id="formTitle">🎯 Tell us about your special person</h2>
                 
                 <form id="giftForm">
                     <div class="form-group">
-                        <label>What's their vibe? (pick all that apply)</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="romantic" name="interests" value="romantic">
-                                <label for="romantic">💕 Romantic</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="foodie" name="interests" value="foodie">
-                                <label for="foodie">🍫 Foodie</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="fashionista" name="interests" value="fashionista">
-                                <label for="fashionista">👗 Fashionista</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="techie" name="interests" value="techie">
-                                <label for="techie">📱 Techie</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="fitness" name="interests" value="fitness">
-                                <label for="fitness">💪 Fitness</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="homebody" name="interests" value="homebody">
-                                <label for="homebody">🏠 Homebody</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="adventurer" name="interests" value="adventurer">
-                                <label for="adventurer">✈️ Adventurer</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="creative" name="interests" value="creative">
-                                <label for="creative">🎨 Creative</label>
-                            </div>
-                        </div>
+                        <label id="interestsLabel">What's their vibe? (pick all that apply)</label>
+                        <div class="checkbox-group" id="interestsGroup"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Gender</label>
+                    <div class="form-group" id="genderGroup">
+                        <label>Gift for</label>
                         <select id="gender" required>
                             <option value="">Select...</option>
                             <option value="female">For Her 👩</option>
                             <option value="male">For Him 👨</option>
+                            <option value="couple">For a Couple 👫</option>
+                            <option value="family">For Family 👨‍👩‍👧</option>
+                            <option value="child">For a Child 👧</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label>Your relationship</label>
-                        <select id="relationship" required>
-                            <option value="">Select...</option>
-                            <option value="new">Just started dating 🌱</option>
-                            <option value="dating">Been together a while 💑</option>
-                            <option value="serious">Very serious / Engaged 💍</option>
-                            <option value="married">Married 👫</option>
-                            <option value="crush">It's a crush... 😏</option>
-                        </select>
+                    <div class="form-group" id="relationshipGroup">
+                        <label id="relationshipLabel">Your relationship</label>
+                        <select id="relationship" required></select>
                     </div>
 
                     <div class="form-group">
@@ -578,12 +610,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Anything else we should know? (optional)</label>
-                        <textarea id="extra" rows="3" placeholder="E.g., She loves sunflowers, He's allergic to nuts..."></textarea>
+                        <label>Anything else? (optional)</label>
+                        <textarea id="extra" rows="3" placeholder="E.g., favorite colors, allergies, hobbies..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn">
-                        Find Perfect Gifts 💝
+                    <button type="submit" class="btn" id="submitBtn">
+                        Find Perfect Gifts 🎁
                     </button>
                 </form>
             </div>
@@ -592,229 +624,973 @@
         <!-- Loading -->
         <div class="loading" id="loading">
             <div class="card">
-                <div class="loading-heart">💝</div>
-                <p>Finding perfect gifts for your love...</p>
+                <div class="loading-icon" id="loadingIcon">🎁</div>
+                <p id="loadingText">Finding perfect gifts...</p>
             </div>
         </div>
 
-        <!-- Results Section -->
+        <!-- Results -->
         <div id="results">
             <div class="card">
-                <h2>🎁 Perfect Picks for Your Valentine!</h2>
+                <h2 id="resultsTitle">🎁 Perfect Picks!</h2>
                 <div id="giftResults"></div>
             </div>
 
-            <div class="whatsapp-cta">
-                <h3>😩 No time to shop?</h3>
-                <p>Let us handle everything! We'll get the gift and deliver it with love 💕</p>
-                <a href="" id="whatsappLink" class="whatsapp-btn" target="_blank">
-                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Chat with Tuff
-                </a>
+            <!-- Lead Capture -->
+            <div class="card lead-capture" id="leadCapture">
+                <h2>😩 No time to shop? We've got you!</h2>
+                <p style="color: #666; margin-bottom: 20px;">Drop your details and we'll handle sourcing, wrapping & delivery! 💕</p>
+                
+                <form id="leadForm" action="https://formspree.io/f/mvzbpbop" method="POST">
+                    <input type="hidden" name="occasion" id="hiddenOccasion">
+                    <input type="hidden" name="gift_preferences" id="hiddenPrefs">
+                    
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" name="name" placeholder="What should we call you?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>WhatsApp Number *</label>
+                        <input type="tel" name="phone" placeholder="e.g. 0248560363" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Your City *</label>
+                        <select name="location" required>
+                            <option value="">Where should we deliver?</option>
+                            <option value="Accra">Accra</option>
+                            <option value="Kumasi">Kumasi</option>
+                            <option value="Takoradi">Takoradi</option>
+                            <option value="Cape Coast">Cape Coast</option>
+                            <option value="Tamale">Tamale</option>
+                            <option value="Tema">Tema</option>
+                            <option value="Koforidua">Koforidua</option>
+                            <option value="Sunyani">Sunyani</option>
+                            <option value="Ho">Ho</option>
+                            <option value="Wa">Wa</option>
+                            <option value="Bolgatanga">Bolgatanga</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Delivery Date</label>
+                        <input type="date" name="delivery_date" id="deliveryDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Special requests? (optional)</label>
+                        <textarea name="notes" rows="2" placeholder="Handwritten note, color preferences..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">🎁 Request Gift Service</button>
+                </form>
+            </div>
+            
+            <div class="card" id="leadSuccess" style="display: none; text-align: center;">
+                <div style="font-size: 4rem; margin-bottom: 15px;">🎉</div>
+                <h2 style="color: var(--primary);">Request Received!</h2>
+                <p style="color: #666;">We'll WhatsApp you shortly!</p>
             </div>
 
-            <button class="btn back-btn" onclick="showForm()">
-                ← Try Different Options
-            </button>
+            <button class="btn back-btn" onclick="showForm()">← Try Different Options</button>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <p>Made with 💕 in Ghana</p>
-            <p>Created by <strong>Tuffguy</strong> 🔥</p>
-            <p>© 2026 ValsPick</p>
+            <p><span class="flag">🇬🇭</span> Pinigifts</p>
+            <p style="font-size: 0.75rem; opacity: 0.7;">© 2026</p>
         </div>
     </div>
 
     <script>
-        // Gift Database
-        const gifts = {
-            female: {
-                romantic: [
-                    { name: "Luxury Rose Bouquet", emoji: "🌹", desc: "50 premium red roses arranged beautifully", price: { low: null, medium: "GHS 150-250", high: "GHS 250-400", premium: "GHS 400+" }, where: "Flower shops (Accra, Kumasi, Takoradi), Online: Reapp, Jumia" },
-                    { name: "Personalized Love Letter Set", emoji: "💌", desc: "Handcrafted stationery with custom calligraphy", price: { low: "GHS 50-80", medium: "GHS 80-150", high: null, premium: null }, where: "Makola, Kejetia Market, local craft vendors" },
-                    { name: "Couples Spa Day", emoji: "💆‍♀️", desc: "Full relaxation package for two", price: { low: null, medium: null, high: "GHS 350-500", premium: "GHS 500+" }, where: "Spas in Accra, Kumasi, Takoradi • Golden Tulip, Kempinski" },
+        // =====================================================
+        // OCCASION CONFIGURATIONS
+        // =====================================================
+        const occasions = {
+            valentine: {
+                theme: 'theme-valentine',
+                logo: '💝',
+                title: 'Pinigifts',
+                subtitle: "Find the perfect Valentine's gift!",
+                formTitle: '🎯 Tell us about your special person',
+                resultsTitle: "💝 Perfect Valentine Picks!",
+                loadingIcon: '💝',
+                loadingText: 'Finding gifts for your love...',
+                submitBtn: 'Find Perfect Gifts 💝',
+                floatingEmojis: ['💕', '💝', '💖', '💗', '❤️', '💘', '💓', '🌹'],
+                countdown: { date: '2026-02-14', label: "until Valentine's Day!" },
+                music: [
+                    'https://www.halmblog.com/wp-content/uploads/2022/08/Kojo-Antwi-Medofo-Pa.mp3'
                 ],
-                foodie: [
-                    { name: "Gourmet Chocolate Box", emoji: "🍫", desc: "Premium Belgian chocolates, beautifully packaged", price: { low: "GHS 60-100", medium: "GHS 100-200", high: "GHS 200-350", premium: null }, where: "Shoprite, Melcom (all branches), Marina Mall, Kumasi City Mall" },
-                    { name: "Romantic Dinner for Two", emoji: "🍽️", desc: "Fine dining experience at a top restaurant", price: { low: null, medium: "GHS 200-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Top restaurants in your city • Accra, Kumasi, Takoradi, Cape Coast" },
-                    { name: "Dessert & Wine Hamper", emoji: "🍷", desc: "Curated selection of treats and fine wine", price: { low: null, medium: "GHS 150-280", high: "GHS 280-450", premium: null }, where: "Palace, Shoprite, Koala • Nationwide delivery via Jumia/Glovo" },
+                interests: [
+                    { id: 'romantic', label: '💕 Romantic' },
+                    { id: 'foodie', label: '🍫 Foodie' },
+                    { id: 'fashionista', label: '👗 Fashionista' },
+                    { id: 'techie', label: '📱 Techie' },
+                    { id: 'fitness', label: '💪 Fitness' },
+                    { id: 'homebody', label: '🏠 Homebody' },
+                    { id: 'adventurer', label: '✈️ Adventurer' },
+                    { id: 'creative', label: '🎨 Creative' },
+                    { id: 'bookworm', label: '📚 Bookworm' }
                 ],
-                fashionista: [
-                    { name: "Designer Perfume", emoji: "✨", desc: "Signature scent from top brands", price: { low: null, medium: "GHS 180-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Melcom, Shoprite (nationwide), Kumasi City Mall, Takoradi Mall" },
-                    { name: "Statement Jewelry Set", emoji: "💎", desc: "Elegant necklace and earring combo", price: { low: "GHS 50-100", medium: "GHS 100-250", high: "GHS 250-450", premium: "GHS 450+" }, where: "Local jewelers, Makola, Kejetia, Takoradi Market Circle" },
-                    { name: "Luxury Handbag", emoji: "👜", desc: "Trendy bag she'll love showing off", price: { low: null, medium: null, high: "GHS 300-500", premium: "GHS 500+" }, where: "Accra Mall, West Hills, Kumasi City Mall, Online: Jumia" },
-                ],
-                techie: [
-                    { name: "Wireless Earbuds", emoji: "🎧", desc: "Premium sound quality for her playlist", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Telefonika, CompuGhana, Franko Trading (nationwide)" },
-                    { name: "Smart Watch", emoji: "⌚", desc: "Fitness tracking meets fashion", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Telefonika, Franko Trading, Melcom Tech sections" },
-                    { name: "Kindle E-Reader", emoji: "📱", desc: "For the bookworm who loves convenience", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "CompuGhana, Jumia Ghana, Amazon (shipped)" },
-                ],
-                fitness: [
-                    { name: "Yoga Mat & Accessories Set", emoji: "🧘‍♀️", desc: "Premium mat with blocks and strap", price: { low: "GHS 80-100", medium: "GHS 120-200", high: null, premium: null }, where: "Decathlon, Game, Melcom Sports (all cities)" },
-                    { name: "Fitness Tracker", emoji: "💪", desc: "Track workouts and health metrics", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: null }, where: "Franko Trading, Telefonika, Jumia (nationwide delivery)" },
-                    { name: "Gym Membership + PT Sessions", emoji: "🏋️‍♀️", desc: "3-month membership with personal training", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "Local gyms in your city • Phoenix, Athlete's Foot, D-Gym" },
-                ],
-                homebody: [
-                    { name: "Cozy Blanket & Candle Set", emoji: "🕯️", desc: "Soft throw blanket with scented candles", price: { low: "GHS 70-100", medium: "GHS 120-200", high: null, premium: null }, where: "Mr. Price Home, Game, Melcom Home (nationwide)" },
-                    { name: "Self-Care Spa Kit", emoji: "🛁", desc: "Bath bombs, face masks, and relaxation essentials", price: { low: "GHS 60-100", medium: "GHS 100-200", high: "GHS 200-350", premium: null }, where: "Shoprite, Melcom, local pharmacies (all cities)" },
-                    { name: "Netflix & Snacks Hamper", emoji: "🍿", desc: "Movie night essentials curated with love", price: { low: "GHS 50-100", medium: "GHS 100-180", high: null, premium: null }, where: "Custom made • Shoprite, Maxmart, local supermarkets" },
-                ],
-                adventurer: [
-                    { name: "Weekend Getaway Package", emoji: "🏖️", desc: "2-night stay at a beautiful resort", price: { low: null, medium: null, high: null, premium: "GHS 800+" }, where: "Aqua Safari, Coconut Grove, Cape Coast, Volta Region resorts" },
-                    { name: "Adventure Experience Voucher", emoji: "🎢", desc: "Zip-lining, canopy walk, or water sports", price: { low: null, medium: "GHS 150-300", high: "GHS 300-500", premium: null }, where: "Kakum (Cape Coast), Boti Falls, Wli Falls, Ada Foah" },
-                    { name: "Travel Accessories Kit", emoji: "✈️", desc: "Neck pillow, luggage tags, and travel organizers", price: { low: "GHS 60-100", medium: "GHS 100-200", high: null, premium: null }, where: "Game, Melcom, malls nationwide, Jumia" },
-                ],
-                creative: [
-                    { name: "Art Supplies Set", emoji: "🎨", desc: "Premium paints, brushes, and canvas", price: { low: "GHS 70-100", medium: "GHS 120-250", high: "GHS 250-400", premium: null }, where: "Kingdom Books, Art Centre Accra, bookshops in Kumasi/Takoradi" },
-                    { name: "Photography Session", emoji: "📸", desc: "Professional couples photoshoot", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Local photographers in your city" },
-                    { name: "DIY Craft Kit", emoji: "✂️", desc: "Make something together - pottery, jewelry, etc.", price: { low: "GHS 50-100", medium: "GHS 100-180", high: null, premium: null }, where: "Art Centre, craft vendors, local markets" },
-                ],
+                relationships: [
+                    { value: 'new', label: 'Just started dating 🌱' },
+                    { value: 'dating', label: 'Been together a while 💑' },
+                    { value: 'serious', label: 'Very serious / Engaged 💍' },
+                    { value: 'married', label: 'Married 👫' },
+                    { value: 'crush', label: "It's a crush... 😏" }
+                ]
             },
-            male: {
-                romantic: [
-                    { name: "Personalized Watch", emoji: "⌚", desc: "Elegant timepiece with custom engraving", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Watch stores in malls, Franko Trading, Jumia Ghana" },
-                    { name: "Memory Photo Book", emoji: "📖", desc: "Custom printed book of your best moments", price: { low: "GHS 80-100", medium: "GHS 120-200", high: null, premium: null }, where: "Photobook Ghana, Printzilla, local print shops" },
-                    { name: "Love Coupons + Date Night", emoji: "💝", desc: "Handmade coupons for special treats and experiences", price: { low: "GHS 30-80", medium: null, high: null, premium: null }, where: "DIY / Custom made • We can help!" },
+            ramadan: {
+                theme: 'theme-ramadan',
+                logo: '🌙',
+                title: 'Pinigifts',
+                subtitle: 'Blessed gifts for Ramadan & Eid!',
+                formTitle: '🎯 Tell us about the recipient',
+                resultsTitle: '🌙 Blessed Gift Ideas!',
+                loadingIcon: '🌙',
+                loadingText: 'Finding blessed gifts...',
+                submitBtn: 'Find Blessed Gifts 🌙',
+                floatingEmojis: ['🌙', '⭐', '🕌', '📿', '🤲', '✨', '🌟', '🕋'],
+                countdown: { date: '2026-02-18', label: 'until Ramadan begins!' },
+                music: [
+                    'https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/001.mp3'
                 ],
-                foodie: [
-                    { name: "Whiskey/Wine Collection", emoji: "🥃", desc: "Premium bottle(s) of his favorite drink", price: { low: null, medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Palace, Shoprite, Koala, Melcom (nationwide)" },
-                    { name: "BBQ & Grill Set", emoji: "🔥", desc: "Premium grilling tools for the meat lover", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Game, Melcom, MaxMart (all cities)" },
-                    { name: "Steak Dinner Experience", emoji: "🥩", desc: "Fine dining at a top steakhouse", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Top restaurants in Accra, Kumasi, Takoradi, Cape Coast" },
+                interests: [
+                    { id: 'spiritual', label: '🤲 Spiritual' },
+                    { id: 'traditional', label: '🕌 Traditional' },
+                    { id: 'foodie', label: '🍽️ Foodie' },
+                    { id: 'fashionista', label: '👔 Modest Fashion' },
+                    { id: 'homebody', label: '🏠 Home Decor' },
+                    { id: 'reader', label: '📖 Reader' },
+                    { id: 'charitable', label: '💝 Charitable' },
+                    { id: 'kids', label: '👧 For Kids' }
                 ],
-                fashionista: [
-                    { name: "Designer Cologne", emoji: "🌟", desc: "Signature scent he'll love", price: { low: null, medium: "GHS 180-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Melcom, Shoprite, malls nationwide, Jumia" },
-                    { name: "Leather Wallet", emoji: "👔", desc: "Premium quality genuine leather", price: { low: "GHS 60-100", medium: "GHS 120-250", high: "GHS 280-450", premium: null }, where: "Malls, leather goods shops, Makola, Kejetia Market" },
-                    { name: "Designer Sunglasses", emoji: "🕶️", desc: "Stylish shades for the cool guy", price: { low: null, medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Optical stores nationwide, malls, Jumia" },
-                ],
-                techie: [
-                    { name: "Wireless Earbuds", emoji: "🎧", desc: "Premium sound quality", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Telefonika, Franko Trading, CompuGhana (nationwide)" },
-                    { name: "Gaming Accessories", emoji: "🎮", desc: "Controller, headset, or game pass", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Game stores, CompuGhana, Franko, Jumia Ghana" },
-                    { name: "Smart Home Gadget", emoji: "🔌", desc: "Smart speaker, lights, or useful tech", price: { low: "GHS 60-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Telefonika, Franko Trading, Jumia (delivery nationwide)" },
-                ],
-                fitness: [
-                    { name: "Gym Bag & Accessories", emoji: "🎒", desc: "Quality bag with water bottle and towel", price: { low: "GHS 70-100", medium: "GHS 120-200", high: null, premium: null }, where: "Decathlon, Game, Melcom Sports (all cities)" },
-                    { name: "Fitness Watch", emoji: "⌚", desc: "Track workouts and stay motivated", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Franko Trading, Telefonika, Jumia (nationwide)" },
-                    { name: "Supplements Hamper", emoji: "💪", desc: "Protein, pre-workout, and vitamins", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Health stores, pharmacies, gyms (all cities)" },
-                ],
-                homebody: [
-                    { name: "Gaming Subscription", emoji: "🎮", desc: "PS Plus, Xbox Game Pass, or streaming service", price: { low: "GHS 50-100", medium: "GHS 100-200", high: null, premium: null }, where: "Online purchase • We can help set it up!" },
-                    { name: "Comfy Loungewear Set", emoji: "👕", desc: "Quality joggers and hoodie combo", price: { low: "GHS 80-100", medium: "GHS 120-250", high: "GHS 280-400", premium: null }, where: "Mr. Price, Game, Melcom, local boutiques" },
-                    { name: "Snacks & Movie Hamper", emoji: "🍿", desc: "His favorite snacks + streaming voucher", price: { low: "GHS 60-100", medium: "GHS 100-180", high: null, premium: null }, where: "Custom made • Shoprite, MaxMart, local supermarkets" },
-                ],
-                adventurer: [
-                    { name: "Weekend Getaway Package", emoji: "🏕️", desc: "2-night adventure trip", price: { low: null, medium: null, high: null, premium: "GHS 800+" }, where: "Volta Region, Cape Coast, Kakum, Northern Ghana" },
-                    { name: "Adventure Gear", emoji: "🧭", desc: "Backpack, flashlight, multi-tool", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 300-450", premium: null }, where: "Decathlon, Game, outdoor stores, Jumia" },
-                    { name: "Experience Voucher", emoji: "🚀", desc: "Quad biking, paintball, or kayaking", price: { low: null, medium: "GHS 150-300", high: "GHS 300-500", premium: null }, where: "Experience providers • Ada, Akosombo, Cape Coast" },
-                ],
-                creative: [
-                    { name: "Music Gear", emoji: "🎸", desc: "Accessories for his instrument or music setup", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 300-500", premium: "GHS 500+" }, where: "Music shops in Accra, Kumasi • Online: Jumia, Jiji" },
-                    { name: "Photography Accessories", emoji: "📷", desc: "Tripod, lens filters, or camera bag", price: { low: "GHS 60-100", medium: "GHS 150-300", high: "GHS 300-500", premium: null }, where: "CompuGhana, photo stores, Jumia Ghana" },
-                    { name: "Workshop/Class Voucher", emoji: "🎨", desc: "Learn something new together", price: { low: "GHS 80-100", medium: "GHS 150-250", high: "GHS 300-400", premium: null }, where: "Schools/studios in your city" },
-                ],
+                relationships: [
+                    { value: 'parent', label: 'Parent 👨‍👩‍👧' },
+                    { value: 'spouse', label: 'Spouse 💑' },
+                    { value: 'sibling', label: 'Sibling 👫' },
+                    { value: 'child', label: 'Child 👶' },
+                    { value: 'friend', label: 'Friend 🤝' },
+                    { value: 'colleague', label: 'Colleague 💼' },
+                    { value: 'elder', label: 'Elder/Imam 🧓' }
+                ]
             },
-            other: {} // Will copy from appropriate based on context
+            birthday: {
+                theme: 'theme-birthday',
+                logo: '🎂',
+                title: 'Pinigifts',
+                subtitle: 'Find the perfect birthday surprise!',
+                formTitle: '🎯 Tell us about the birthday star',
+                resultsTitle: '🎂 Perfect Birthday Picks!',
+                loadingIcon: '🎂',
+                loadingText: 'Finding birthday gifts...',
+                submitBtn: 'Find Birthday Gifts 🎂',
+                floatingEmojis: ['🎂', '🎈', '🎉', '🎁', '🥳', '🎊', '✨', '🎀'],
+                countdown: null,
+                music: [
+                    'https://www.soundjay.com/human/sounds/applause-01.mp3'
+                ],
+                interests: [
+                    { id: 'foodie', label: '🍰 Foodie' },
+                    { id: 'fashionista', label: '👗 Fashionista' },
+                    { id: 'techie', label: '📱 Techie' },
+                    { id: 'fitness', label: '💪 Fitness' },
+                    { id: 'gamer', label: '🎮 Gamer' },
+                    { id: 'creative', label: '🎨 Creative' },
+                    { id: 'bookworm', label: '📚 Bookworm' },
+                    { id: 'adventurer', label: '✈️ Adventurer' },
+                    { id: 'beauty', label: '💄 Beauty' },
+                    { id: 'music', label: '🎵 Music Lover' }
+                ],
+                relationships: [
+                    { value: 'partner', label: 'Partner 💑' },
+                    { value: 'parent', label: 'Parent 👨‍👩‍👧' },
+                    { value: 'child', label: 'Child 👶' },
+                    { value: 'sibling', label: 'Sibling 👫' },
+                    { value: 'friend', label: 'Friend 🤝' },
+                    { value: 'colleague', label: 'Colleague 💼' },
+                    { value: 'boss', label: 'Boss 👔' }
+                ]
+            },
+            wedding: {
+                theme: 'theme-wedding',
+                logo: '💒',
+                title: 'Pinigifts',
+                subtitle: 'Gifts for the big day!',
+                formTitle: '🎯 Tell us about the couple',
+                resultsTitle: '💒 Perfect Wedding Gifts!',
+                loadingIcon: '💒',
+                loadingText: 'Finding wedding gifts...',
+                submitBtn: 'Find Wedding Gifts 💒',
+                floatingEmojis: ['💒', '💍', '👰', '🤵', '💐', '🥂', '✨', '💕'],
+                countdown: null,
+                music: [],
+                interests: [
+                    { id: 'traditional', label: '🇬🇭 Traditional' },
+                    { id: 'modern', label: '✨ Modern' },
+                    { id: 'homebody', label: '🏠 Home Items' },
+                    { id: 'travelers', label: '✈️ Travelers' },
+                    { id: 'foodies', label: '🍽️ Foodies' },
+                    { id: 'religious', label: '🙏 Religious' },
+                    { id: 'practical', label: '🔧 Practical' }
+                ],
+                relationships: [
+                    { value: 'close_family', label: 'Close Family 👨‍👩‍👧' },
+                    { value: 'extended_family', label: 'Extended Family 👪' },
+                    { value: 'close_friend', label: 'Close Friend 🤝' },
+                    { value: 'colleague', label: 'Colleague 💼' },
+                    { value: 'acquaintance', label: 'Acquaintance 👋' }
+                ]
+            },
+            graduation: {
+                theme: 'theme-graduation',
+                logo: '🎓',
+                title: 'Pinigifts',
+                subtitle: 'Celebrate their achievement!',
+                formTitle: '🎯 Tell us about the graduate',
+                resultsTitle: '🎓 Perfect Graduation Gifts!',
+                loadingIcon: '🎓',
+                loadingText: 'Finding graduation gifts...',
+                submitBtn: 'Find Graduation Gifts 🎓',
+                floatingEmojis: ['🎓', '📚', '🏆', '⭐', '🎉', '💼', '✨', '🎊'],
+                countdown: null,
+                music: [],
+                interests: [
+                    { id: 'professional', label: '💼 Professional' },
+                    { id: 'techie', label: '💻 Techie' },
+                    { id: 'creative', label: '🎨 Creative' },
+                    { id: 'fashionista', label: '👔 Fashionista' },
+                    { id: 'traveler', label: '✈️ Traveler' },
+                    { id: 'bookworm', label: '📚 Bookworm' },
+                    { id: 'entrepreneur', label: '💡 Entrepreneur' }
+                ],
+                relationships: [
+                    { value: 'child', label: 'My Child 👶' },
+                    { value: 'sibling', label: 'Sibling 👫' },
+                    { value: 'partner', label: 'Partner 💑' },
+                    { value: 'friend', label: 'Friend 🤝' },
+                    { value: 'mentee', label: 'Mentee 📖' },
+                    { value: 'nephew_niece', label: 'Nephew/Niece 👧' }
+                ]
+            },
+            baby: {
+                theme: 'theme-baby',
+                logo: '👶',
+                title: 'Pinigifts',
+                subtitle: 'Welcome the little one!',
+                formTitle: '🎯 Tell us about the occasion',
+                resultsTitle: '👶 Adorable Baby Gifts!',
+                loadingIcon: '👶',
+                loadingText: 'Finding adorable gifts...',
+                submitBtn: 'Find Baby Gifts 👶',
+                floatingEmojis: ['👶', '🍼', '🧸', '💕', '🎀', '⭐', '🌈', '🧷'],
+                countdown: null,
+                music: [],
+                interests: [
+                    { id: 'practical', label: '🍼 Practical' },
+                    { id: 'cute', label: '🧸 Cute & Cuddly' },
+                    { id: 'educational', label: '📚 Educational' },
+                    { id: 'premium', label: '✨ Premium' },
+                    { id: 'handmade', label: '🧶 Handmade' },
+                    { id: 'traditional', label: '🇬🇭 Traditional' }
+                ],
+                relationships: [
+                    { value: 'sibling', label: "Sibling 👫" },
+                    { value: 'grandparent', label: "Grandparent 👴" },
+                    { value: 'aunt_uncle', label: "Aunt/Uncle 👨‍👩‍👧" },
+                    { value: 'friend', label: "Friend 🤝" },
+                    { value: 'colleague', label: "Colleague 💼" }
+                ]
+            },
+            housewarming: {
+                theme: 'theme-housewarming',
+                logo: '🏠',
+                title: 'Pinigifts',
+                subtitle: 'Help make their house a home!',
+                formTitle: '🎯 Tell us about the new homeowners',
+                resultsTitle: '🏠 Perfect Housewarming Gifts!',
+                loadingIcon: '🏠',
+                loadingText: 'Finding home gifts...',
+                submitBtn: 'Find Home Gifts 🏠',
+                floatingEmojis: ['🏠', '🔑', '🪴', '🛋️', '🖼️', '✨', '🎉', '🏡'],
+                countdown: null,
+                music: [],
+                interests: [
+                    { id: 'practical', label: '🔧 Practical' },
+                    { id: 'decorative', label: '🖼️ Decorative' },
+                    { id: 'plants', label: '🪴 Plants' },
+                    { id: 'kitchen', label: '🍳 Kitchen' },
+                    { id: 'tech', label: '📱 Smart Home' },
+                    { id: 'traditional', label: '🇬🇭 Traditional' }
+                ],
+                relationships: [
+                    { value: 'family', label: 'Family 👨‍👩‍👧' },
+                    { value: 'close_friend', label: 'Close Friend 🤝' },
+                    { value: 'colleague', label: 'Colleague 💼' },
+                    { value: 'neighbor', label: 'New Neighbor 👋' }
+                ]
+            },
+            christmas: {
+                theme: 'theme-christmas',
+                logo: '🎄',
+                title: 'Pinigifts',
+                subtitle: 'Spread the Christmas cheer!',
+                formTitle: '🎯 Who are you shopping for?',
+                resultsTitle: '🎄 Perfect Christmas Gifts!',
+                loadingIcon: '🎄',
+                loadingText: 'Finding festive gifts...',
+                submitBtn: 'Find Christmas Gifts 🎄',
+                floatingEmojis: ['🎄', '🎅', '🎁', '⭐', '❄️', '🔔', '🦌', '✨'],
+                countdown: { date: '2026-12-25', label: 'until Christmas!' },
+                music: [
+                    'https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3'
+                ],
+                interests: [
+                    { id: 'foodie', label: '🍪 Foodie' },
+                    { id: 'fashionista', label: '👗 Fashionista' },
+                    { id: 'techie', label: '📱 Techie' },
+                    { id: 'homebody', label: '🏠 Homebody' },
+                    { id: 'kids', label: '🧸 For Kids' },
+                    { id: 'religious', label: '✝️ Religious' },
+                    { id: 'gamer', label: '🎮 Gamer' },
+                    { id: 'beauty', label: '💄 Beauty' }
+                ],
+                relationships: [
+                    { value: 'parent', label: 'Parent 👨‍👩‍👧' },
+                    { value: 'child', label: 'Child 👶' },
+                    { value: 'sibling', label: 'Sibling 👫' },
+                    { value: 'partner', label: 'Partner 💑' },
+                    { value: 'friend', label: 'Friend 🤝' },
+                    { value: 'colleague', label: 'Colleague 💼' },
+                    { value: 'secret_santa', label: 'Secret Santa 🎅' }
+                ]
+            },
+            easter: {
+                theme: 'theme-easter',
+                logo: '🐣',
+                title: 'Pinigifts',
+                subtitle: 'Celebrate the resurrection!',
+                formTitle: '🎯 Who are you gifting?',
+                resultsTitle: '🐣 Perfect Easter Gifts!',
+                loadingIcon: '🐣',
+                loadingText: 'Finding Easter gifts...',
+                submitBtn: 'Find Easter Gifts 🐣',
+                floatingEmojis: ['🐣', '🐰', '🥚', '🌸', '✝️', '🌷', '🦋', '✨'],
+                countdown: { date: '2026-04-05', label: 'until Easter!' },
+                music: [],
+                interests: [
+                    { id: 'religious', label: '✝️ Religious' },
+                    { id: 'foodie', label: '🍫 Chocolate Lover' },
+                    { id: 'kids', label: '🧸 For Kids' },
+                    { id: 'homebody', label: '🏠 Home Decor' },
+                    { id: 'gardener', label: '🌷 Gardener' },
+                    { id: 'fashionista', label: '👗 Fashionista' }
+                ],
+                relationships: [
+                    { value: 'child', label: 'Child 👶' },
+                    { value: 'parent', label: 'Parent 👨‍👩‍👧' },
+                    { value: 'sibling', label: 'Sibling 👫' },
+                    { value: 'friend', label: 'Friend 🤝' },
+                    { value: 'godchild', label: 'Godchild 👼' }
+                ]
+            },
+            condolence: {
+                theme: 'theme-condolence',
+                logo: '🕊️',
+                title: 'Pinigifts',
+                subtitle: 'Show you care during difficult times',
+                formTitle: '🎯 Tell us about the bereaved',
+                resultsTitle: '🕊️ Thoughtful Sympathy Gifts',
+                loadingIcon: '🕊️',
+                loadingText: 'Finding thoughtful gifts...',
+                submitBtn: 'Find Sympathy Gifts 🕊️',
+                floatingEmojis: ['🕊️', '🤍', '🌸', '💐', '🕯️', '⭐', '☁️'],
+                countdown: null,
+                music: [],
+                interests: [
+                    { id: 'flowers', label: '💐 Flowers' },
+                    { id: 'food', label: '🍲 Food/Meals' },
+                    { id: 'memorial', label: '🕯️ Memorial' },
+                    { id: 'comfort', label: '🤗 Comfort Items' },
+                    { id: 'religious', label: '🙏 Religious' },
+                    { id: 'donation', label: '💝 Donation' }
+                ],
+                relationships: [
+                    { value: 'close_family', label: 'Close Family 👨‍👩‍👧' },
+                    { value: 'extended_family', label: 'Extended Family 👪' },
+                    { value: 'close_friend', label: 'Close Friend 🤝' },
+                    { value: 'colleague', label: 'Colleague 💼' },
+                    { value: 'acquaintance', label: 'Acquaintance 👋' }
+                ]
+            }
         };
 
-        // Copy gifts for 'other' gender (mix of both)
-        gifts.other = { ...gifts.female };
+        // =====================================================
+        // EXPANDED GIFT DATABASE - More Creative & Thoughtful
+        // =====================================================
+        const giftDatabase = {
+            valentine: {
+                female: {
+                    romantic: [
+                        { name: "Custom Star Map Print", emoji: "✨", desc: "A beautiful print showing the exact night sky from when you first met or a special date. Frame included.", price: { low: "GHS 60-100", medium: "GHS 120-200", high: null, premium: null }, where: "Printzilla, Photobook Ghana, Canva Print", tip: "Add coordinates and a meaningful quote!" },
+                        { name: "Love Letter in a Bottle", emoji: "💌", desc: "Handwritten love letter sealed in a decorative glass bottle with dried flowers.", price: { low: "GHS 40-80", medium: "GHS 80-150", high: null, premium: null }, where: "DIY or craft vendors at Makola", tip: "Write 12 reasons why you love them!" },
+                        { name: "Luxury Rose Box", emoji: "🌹", desc: "Preserved roses in an elegant box that last up to a year. Available in red, pink, white.", price: { low: null, medium: "GHS 180-280", high: "GHS 300-450", premium: "GHS 500+" }, where: "Reapp, premium florists in Accra", tip: "Add her initial on the box for extra touch!" },
+                        { name: "Couples Photoshoot Session", emoji: "📸", desc: "Professional 1-hour photoshoot at a beautiful location. Includes edited photos.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: null }, where: "Instagram photographers in your city", tip: "Book outdoor location during golden hour!" },
+                        { name: "Spa Day for Two", emoji: "💆‍♀️", desc: "Full couples spa package: massage, facial, and relaxation time together.", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "Golden Tulip, Kempinski, Labadi Beach Hotel", tip: "Add champagne and chocolate for surprise!" }
+                    ],
+                    foodie: [
+                        { name: "Gourmet Chocolate Tasting Box", emoji: "🍫", desc: "Assorted premium chocolates from around the world - Belgian, Swiss, Ghanaian cocoa.", price: { low: "GHS 50-100", medium: "GHS 120-200", high: "GHS 220-350", premium: null }, where: "Shoprite, Marina Mall, '57 Chocolate", tip: "Include her favorite wine for pairing!" },
+                        { name: "Romantic Dinner Cruise", emoji: "🚢", desc: "Sunset dinner cruise on the Volta Lake or Ada with live music.", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "Aqua Safari Resort, Sogakope", tip: "Book during full moon for magic!" },
+                        { name: "Cooking Class for Two", emoji: "👨‍🍳", desc: "Learn to make a cuisine together - Italian, Asian, or traditional Ghanaian.", price: { low: null, medium: "GHS 150-250", high: "GHS 280-400", premium: null }, where: "Private chefs, cooking schools in Accra", tip: "Choose her dream cuisine to learn!" },
+                        { name: "Breakfast in Bed Kit", emoji: "🥐", desc: "Premium hamper: artisan pastries, fresh fruits, juice, and coffee. Delivered morning of.", price: { low: "GHS 80-100", medium: "GHS 120-200", high: null, premium: null }, where: "Café Kwae, Marwako, custom order", tip: "Add a single rose and handwritten note!" }
+                    ],
+                    fashionista: [
+                        { name: "Designer Perfume Gift Set", emoji: "✨", desc: "Her signature scent with matching body lotion and travel size.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Melcom, Shoprite, Marina Mall, Palace", tip: "If unsure, go for Chanel or Dior classics!" },
+                        { name: "Custom Jewelry with Her Initial", emoji: "💎", desc: "18k gold-plated necklace or bracelet with her initial or name.", price: { low: "GHS 60-100", medium: "GHS 120-250", high: "GHS 280-400", premium: null }, where: "Instagram jewelers, Makola gold section", tip: "Match the metal to what she usually wears!" },
+                        { name: "Luxury Silk Scarf", emoji: "🧣", desc: "Premium printed silk scarf - can be worn multiple ways.", price: { low: null, medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Boutiques at Accra Mall, Marina Mall", tip: "Choose colors that match her wardrobe!" },
+                        { name: "Designer Bag", emoji: "👜", desc: "Quality handbag from a reputable brand - practical and stylish.", price: { low: null, medium: null, high: "GHS 350-500", premium: "GHS 600+" }, where: "West Hills Mall, Accra Mall, Jumia", tip: "Check what size bag she prefers first!" }
+                    ],
+                    techie: [
+                        { name: "Apple AirPods / Quality Earbuds", emoji: "🎧", desc: "Premium wireless earbuds for her music, calls, and podcasts.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Telefonika, iStore, CompuGhana, Franko", tip: "Get a cute case to match her style!" },
+                        { name: "Instax Mini Camera", emoji: "📷", desc: "Instant camera to capture memories together. Includes first film pack.", price: { low: null, medium: "GHS 250-300", high: "GHS 350-450", premium: null }, where: "CompuGhana, Jumia, photography stores", tip: "Add extra film packs as bonus!" },
+                        { name: "Smart Watch", emoji: "⌚", desc: "Fitness tracking, notifications, and style in one - Apple Watch or Samsung.", price: { low: null, medium: "GHS 200-300", high: "GHS 400-500", premium: "GHS 600+" }, where: "Telefonika, Franko, iStore", tip: "Choose rose gold or her favorite color!" },
+                        { name: "Kindle E-Reader", emoji: "📱", desc: "For the reader who loves convenience. Thousands of books in her pocket.", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "Amazon shipped, CompuGhana", tip: "Pre-load with her favorite authors!" }
+                    ],
+                    fitness: [
+                        { name: "Premium Yoga Mat Set", emoji: "🧘‍♀️", desc: "Non-slip mat with blocks, strap, and carrying bag. Perfect for home practice.", price: { low: "GHS 70-100", medium: "GHS 120-200", high: null, premium: null }, where: "Decathlon, Game, Melcom Sports", tip: "Match the color to her workout gear!" },
+                        { name: "Gym Membership + Personal Training", emoji: "💪", desc: "3-month membership with 4 PT sessions to kickstart her goals.", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "Phoenix Gym, D-Gym, Athlete's Foot", tip: "Add new workout outfits!" },
+                        { name: "Fitness Tracker Watch", emoji: "⌚", desc: "Track steps, heart rate, sleep. Motivates healthy habits.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Franko, Telefonika, Jumia", tip: "Set up step challenge together!" }
+                    ],
+                    homebody: [
+                        { name: "Cozy Self-Care Box", emoji: "🛁", desc: "Plush robe, scented candles, bath bombs, face masks, and herbal tea.", price: { low: "GHS 80-100", medium: "GHS 150-250", high: "GHS 280-400", premium: null }, where: "Custom assembled from Shoprite, pharmacies", tip: "Add Netflix gift card for movie nights!" },
+                        { name: "Weighted Blanket", emoji: "🛋️", desc: "Premium weighted blanket for deep relaxation and better sleep.", price: { low: null, medium: "GHS 180-280", high: "GHS 300-400", premium: null }, where: "Mr. Price Home, Jumia, Game", tip: "Choose weight based on her body weight!" },
+                        { name: "Indoor Plant Collection", emoji: "🪴", desc: "3-5 easy-care plants in decorative pots to brighten her space.", price: { low: "GHS 50-100", medium: "GHS 120-200", high: null, premium: null }, where: "Plant nurseries, Makola, Instagram plant vendors", tip: "Include care instructions card!" }
+                    ],
+                    adventurer: [
+                        { name: "Weekend Getaway Package", emoji: "🏖️", desc: "2-night stay at a beautiful resort - beach, mountains, or forest.", price: { low: null, medium: null, high: null, premium: "GHS 800+" }, where: "Aqua Safari, Coconut Grove, Anomabo Beach Resort", tip: "Surprise her with the destination!" },
+                        { name: "Hot Air Balloon Experience", emoji: "🎈", desc: "Sunrise balloon ride over stunning landscapes.", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "Adventure providers, check Instagram", tip: "Bring champagne for landing celebration!" },
+                        { name: "Zip-lining & Canopy Walk", emoji: "🌲", desc: "Adventure day at Kakum National Park with picnic lunch.", price: { low: null, medium: "GHS 150-250", high: "GHS 280-400", premium: null }, where: "Kakum NP, Cape Coast", tip: "Combine with Cape Coast castle visit!" }
+                    ],
+                    creative: [
+                        { name: "Art Supply Premium Set", emoji: "🎨", desc: "Professional-grade paints, brushes, canvas, and easel.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Art Centre Accra, Kingdom Books", tip: "Add a painting class voucher!" },
+                        { name: "Pottery Class for Two", emoji: "🏺", desc: "Learn to make pottery together - keep your creations!", price: { low: null, medium: "GHS 180-280", high: "GHS 300-400", premium: null }, where: "Art studios in Accra, Kumasi", tip: "Very romantic - recreate the Ghost scene!" },
+                        { name: "Customized Portrait", emoji: "🖼️", desc: "Commission a local artist to paint/draw her or both of you.", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 350-500", premium: null }, where: "Instagram artists, Art Centre", tip: "Digital portraits are quicker & affordable!" }
+                    ],
+                    bookworm: [
+                        { name: "Book Lover's Dream Box", emoji: "📚", desc: "3-5 books from her wishlist, bookmarks, reading light, cozy socks, tea.", price: { low: "GHS 80-100", medium: "GHS 150-250", high: "GHS 280-400", premium: null }, where: "Vidya Bookstore, EPP Books, Kingdom Books", tip: "Check her Goodreads for wishlist!" },
+                        { name: "First Edition/Signed Book", emoji: "📖", desc: "A special edition of her favorite book or signed copy.", price: { low: null, medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Online rare book sellers, AbeBooks", tip: "Research her all-time favorite!" }
+                    ]
+                },
+                male: {
+                    romantic: [
+                        { name: "Personalized Leather Wallet", emoji: "👔", desc: "Quality leather wallet with his initials embossed.", price: { low: "GHS 80-100", medium: "GHS 150-250", high: "GHS 280-400", premium: null }, where: "Leather shops, Makola, malls", tip: "Add a photo of you both inside!" },
+                        { name: "Watch with Engraved Message", emoji: "⌚", desc: "Elegant watch with a love message engraved on the back.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Watch stores, Franko Trading", tip: "Keep message short but meaningful!" },
+                        { name: "Adventure Photo Book", emoji: "📖", desc: "Custom printed book of your memories together - trips, dates, milestones.", price: { low: "GHS 80-100", medium: "GHS 120-200", high: null, premium: null }, where: "Photobook Ghana, Printzilla", tip: "Include future bucket list pages!" },
+                        { name: "Love Coupons Book", emoji: "🎫", desc: "Handmade coupons for: breakfast in bed, movie night, massage, etc.", price: { low: "GHS 20-50", medium: null, high: null, premium: null }, where: "DIY - Canva templates available", tip: "Include some spicy ones! 😏" }
+                    ],
+                    foodie: [
+                        { name: "Whiskey Tasting Set", emoji: "🥃", desc: "Selection of 3-4 premium whiskeys with tasting notes and glasses.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Palace, Shoprite, Living Room", tip: "Add whiskey stones and nice glasses!" },
+                        { name: "BBQ & Grill Master Set", emoji: "🔥", desc: "Premium grilling tools, apron, spice rubs, and meat thermometer.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Game, Melcom, MaxMart", tip: "Plan a BBQ date to use them!" },
+                        { name: "Steakhouse Dinner Experience", emoji: "🥩", desc: "Fine dining at a top steakhouse - premium cuts, wine pairing.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Santoku, Smoke House, Coco Lounge", tip: "Book a private table!" }
+                    ],
+                    fashionista: [
+                        { name: "Designer Cologne Collection", emoji: "🌟", desc: "His signature scent plus travel size for the office.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Melcom, Shoprite, Palace, Marina Mall", tip: "Dior Sauvage, Bleu de Chanel are safe bets!" },
+                        { name: "Premium Leather Belt", emoji: "👔", desc: "Quality genuine leather belt with elegant buckle.", price: { low: "GHS 60-100", medium: "GHS 120-200", high: "GHS 220-350", premium: null }, where: "Malls, leather goods shops, Makola", tip: "Check his current belt size!" },
+                        { name: "Designer Sunglasses", emoji: "🕶️", desc: "Stylish shades from Ray-Ban, Oakley, or similar.", price: { low: null, medium: "GHS 180-280", high: "GHS 300-500", premium: "GHS 500+" }, where: "Optical stores, malls, Jumia", tip: "Match his face shape!" }
+                    ],
+                    techie: [
+                        { name: "Wireless Earbuds Pro", emoji: "🎧", desc: "Premium earbuds with noise cancellation for work and music.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Telefonika, Franko, CompuGhana, iStore", tip: "AirPods Pro or Samsung Buds Pro!" },
+                        { name: "Gaming Setup Upgrade", emoji: "🎮", desc: "Gaming headset, controller, or game subscription.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "CompuGhana, Franko, Game stores", tip: "Check what console he has first!" },
+                        { name: "Portable Power Station", emoji: "🔋", desc: "High-capacity power bank that can charge laptops too.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Telefonika, Franko, Jumia", tip: "Great for the guy always on the move!" }
+                    ],
+                    fitness: [
+                        { name: "Gym Essentials Kit", emoji: "💪", desc: "Quality gym bag, shaker bottle, towel, wrist wraps, and supplements.", price: { low: "GHS 80-100", medium: "GHS 150-250", high: "GHS 280-400", premium: null }, where: "Decathlon, Game, Melcom Sports", tip: "Add a month of his favorite protein!" },
+                        { name: "Smart Fitness Watch", emoji: "⌚", desc: "Track workouts, heart rate, and compete with friends.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Franko, Telefonika, iStore", tip: "Set up workout challenges together!" }
+                    ],
+                    homebody: [
+                        { name: "Gaming Subscription Bundle", emoji: "🎮", desc: "1-year PS Plus, Xbox Game Pass, or Netflix + snacks hamper.", price: { low: "GHS 80-100", medium: "GHS 150-250", high: "GHS 280-400", premium: null }, where: "Online purchase, supermarkets for snacks", tip: "Include his favorite gaming snacks!" },
+                        { name: "Premium Loungewear Set", emoji: "👕", desc: "Quality joggers, hoodie, and slippers for maximum comfort.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-400", premium: null }, where: "Mr. Price, Game, boutiques", tip: "Get matching sets for couple vibes!" }
+                    ],
+                    adventurer: [
+                        { name: "Adventure Gear Bundle", emoji: "🧭", desc: "Quality backpack, flashlight, multi-tool, and water bottle.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: null }, where: "Decathlon, Game, outdoor stores", tip: "Plan a hiking trip to use them!" },
+                        { name: "Quad Biking Experience", emoji: "🏍️", desc: "Adrenaline-pumping quad bike adventure for two.", price: { low: null, medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Aburi, Ada Foah, adventure providers", tip: "Goes perfectly with picnic after!" }
+                    ],
+                    creative: [
+                        { name: "Music Production Gear", emoji: "🎸", desc: "Accessories for his instrument or audio interface for production.", price: { low: "GHS 60-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Music shops, CompuGhana for audio gear", tip: "Research what he needs next!" },
+                        { name: "Photography Accessories", emoji: "📷", desc: "Tripod, camera bag, lens filters, or memory cards.", price: { low: "GHS 60-100", medium: "GHS 150-280", high: "GHS 300-500", premium: null }, where: "CompuGhana, photo stores, Jumia", tip: "Check his current camera model!" }
+                    ],
+                    bookworm: [
+                        { name: "Business/Self-Help Collection", emoji: "📚", desc: "Curated selection: Think and Grow Rich, Atomic Habits, etc.", price: { low: "GHS 60-100", medium: "GHS 120-220", high: null, premium: null }, where: "Vidya, Kingdom Books, EPP Books", tip: "Add a nice leather bookmark!" }
+                    ]
+                }
+            },
+            ramadan: {
+                female: {
+                    spiritual: [
+                        { name: "Elegant Prayer Set", emoji: "🕌", desc: "Beautiful prayer mat, matching hijab for prayer, quality tasbih, and Quran stand.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Islamic shops at Makola, Nima, Kejetia", tip: "Choose her favorite color!" },
+                        { name: "Quran with Translation", emoji: "📖", desc: "Beautiful bound Quran with English/Twi translation and tafsir.", price: { low: "GHS 50-100", medium: "GHS 120-200", high: "GHS 220-350", premium: null }, where: "Islamic bookshops, mosque shops", tip: "Add a beautiful Quran cover!" },
+                        { name: "Dua Book Collection", emoji: "🤲", desc: "Fortress of the Muslim + other dua books in elegant gift box.", price: { low: "GHS 40-80", medium: "GHS 100-180", high: null, premium: null }, where: "Islamic bookshops", tip: "Include bookmark with favorite dua!" }
+                    ],
+                    traditional: [
+                        { name: "Elegant Abaya Set", emoji: "👗", desc: "Beautiful modest abaya with matching hijab for Eid.", price: { low: null, medium: "GHS 150-280", high: "GHS 300-500", premium: "GHS 600+" }, where: "Islamic fashion shops, Makola, Instagram", tip: "Get measurements secretly!" },
+                        { name: "Islamic Wall Art", emoji: "🖼️", desc: "Modern calligraphy - Ayatul Kursi, 99 Names, or custom piece.", price: { low: "GHS 60-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Islamic art vendors, Instagram artists", tip: "Match their home decor style!" }
+                    ],
+                    foodie: [
+                        { name: "Premium Iftar Hamper", emoji: "🧺", desc: "Medjool dates, zamzam water, Arabic sweets, nuts, premium tea.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-500", premium: null }, where: "Custom assembled, Islamic shops, Shoprite", tip: "Present in beautiful basket!" },
+                        { name: "Ajwa Dates from Madinah", emoji: "🌴", desc: "Premium Ajwa dates - the Prophet's (SAW) favorite, beautifully packaged.", price: { low: null, medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Islamic shops, Hajj/Umrah returnees", tip: "These are extra special & blessed!" }
+                    ],
+                    charitable: [
+                        { name: "Charity in Their Name", emoji: "💝", desc: "Sponsor an orphan, build a well, or feed families in their name.", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Islamic Relief, Muslim Hands, local mosques", tip: "Give them certificate of donation!" }
+                    ],
+                    homebody: [
+                        { name: "Oud & Bakhoor Set", emoji: "🪔", desc: "Premium incense collection with beautiful burner.", price: { low: "GHS 60-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Islamic shops, perfume vendors", tip: "Arabian oud is extra special!" },
+                        { name: "Ramadan Decor Set", emoji: "🌙", desc: "Lanterns, crescent decorations, fairy lights for home.", price: { low: "GHS 50-100", medium: "GHS 120-200", high: null, premium: null }, where: "Makola, Islamic shops, HomeGoods", tip: "Set up as surprise decoration!" }
+                    ],
+                    kids: [
+                        { name: "Kids' Ramadan Activity Set", emoji: "👧", desc: "Islamic coloring books, prayer mat, Islamic puzzles, sticker chart.", price: { low: "GHS 40-80", medium: "GHS 100-180", high: null, premium: null }, where: "Islamic bookshops, online", tip: "Include Eid outfit too!" }
+                    ]
+                },
+                male: {
+                    spiritual: [
+                        { name: "Premium Tasbih Collection", emoji: "📿", desc: "Quality prayer beads in elegant case - wood, stone, or gem.", price: { low: "GHS 40-80", medium: "GHS 100-200", high: "GHS 220-350", premium: null }, where: "Islamic shops, Mecca/Madinah imports", tip: "33 or 99 beads based on preference!" },
+                        { name: "Quran with Stand", emoji: "📖", desc: "Beautiful Quran with carved wooden stand.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Islamic bookshops, import shops", tip: "Large print for elders!" }
+                    ],
+                    traditional: [
+                        { name: "Premium Kaftan/Jalabiya", emoji: "👔", desc: "Elegant traditional wear for Eid prayers and celebrations.", price: { low: null, medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Fabric markets, tailors, Islamic shops", tip: "White is traditional for Eid!" },
+                        { name: "Quality Kufi Cap Set", emoji: "🧢", desc: "Collection of 3-5 quality prayer caps in different styles.", price: { low: "GHS 30-60", medium: "GHS 80-150", high: null, premium: null }, where: "Islamic shops, Nima, Makola", tip: "Include embroidered one for Eid!" }
+                    ],
+                    foodie: [
+                        { name: "Premium Dates & Honey Box", emoji: "🌴", desc: "Selection of premium dates, Yemeni/Saudi honey, nuts.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Islamic shops, Shoprite", tip: "Sidr honey is extra special!" }
+                    ],
+                    charitable: [
+                        { name: "Zakat/Sadaqah Contribution", emoji: "💝", desc: "Donate to worthy causes in their name - wells, orphans, masjid.", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Mosques, Islamic charities", tip: "Present as framed certificate!" }
+                    ]
+                }
+            },
+            birthday: {
+                female: {
+                    foodie: [
+                        { name: "Custom Birthday Cake & Treats", emoji: "🎂", desc: "Stunning custom cake with matching cupcakes and macarons.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "CakeHouse Ghana, local bakeries, Instagram bakers", tip: "Get her favorite flavor, not yours!" },
+                        { name: "Wine & Cheese Experience", emoji: "🍷", desc: "Selection of wines with gourmet cheeses for a tasting evening.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: null }, where: "Palace, Shoprite, Wine Box Ghana", tip: "Add crackers and grapes for full experience!" }
+                    ],
+                    fashionista: [
+                        { name: "Designer Perfume Set", emoji: "✨", desc: "Signature scent with body lotion and travel size.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Melcom, Shoprite, malls", tip: "Ask her friends for hints on her wishlist!" },
+                        { name: "Jewelry Gift Box", emoji: "💎", desc: "Elegant necklace, bracelet, or earrings in gift box.", price: { low: "GHS 60-100", medium: "GHS 150-280", high: "GHS 300-500", premium: "GHS 600+" }, where: "Jewelers, malls, Instagram shops", tip: "Gold if she wears gold, silver if silver!" }
+                    ],
+                    beauty: [
+                        { name: "Makeup & Skincare Set", emoji: "💄", desc: "Premium makeup palette or skincare routine set.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-500", premium: null }, where: "Melcom, Shoprite, beauty stores", tip: "Check what brands she already uses!" }
+                    ],
+                    adventurer: [
+                        { name: "Experience Day Voucher", emoji: "🎢", desc: "Spa day, adventure activity, or dinner cruise - she chooses!", price: { low: null, medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Various experience providers", tip: "Make it a surprise reveal!" }
+                    ]
+                },
+                male: {
+                    foodie: [
+                        { name: "Craft Beer & BBQ Set", emoji: "🍺", desc: "Selection of craft beers with BBQ sauces, rubs, and snacks.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Shoprite, craft beer spots, Game", tip: "Add premium beef cuts from butcher!" },
+                        { name: "Whiskey Connoisseur Set", emoji: "🥃", desc: "Premium whiskey with glasses, stones, and tasting notes.", price: { low: null, medium: "GHS 200-350", high: "GHS 400-500", premium: "GHS 600+" }, where: "Palace, Shoprite, Living Room", tip: "Research his preferred style: scotch, bourbon, etc!" }
+                    ],
+                    gamer: [
+                        { name: "Gaming Bundle", emoji: "🎮", desc: "New game + gaming headset or controller + snacks.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "CompuGhana, Franko, game stores", tip: "Check his wishlist or ask his gaming friends!" }
+                    ],
+                    techie: [
+                        { name: "Tech Upgrade Gift", emoji: "📱", desc: "Premium earbuds, smart watch, or gadget he's been eyeing.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Telefonika, Franko, CompuGhana", tip: "Listen for hints about what he wants!" }
+                    ],
+                    music: [
+                        { name: "Concert/Event Tickets", emoji: "🎵", desc: "Tickets to see his favorite artist or a major event.", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "TicketMiller, event pages", tip: "Get VIP if budget allows!" }
+                    ]
+                }
+            },
+            christmas: {
+                female: {
+                    foodie: [
+                        { name: "Christmas Hamper Deluxe", emoji: "🧺", desc: "Wine, chocolates, cookies, nuts, and festive treats.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Shoprite, Melcom, custom assembly", tip: "Add Christmas crackers for fun!" }
+                    ],
+                    homebody: [
+                        { name: "Cozy Christmas Box", emoji: "🎄", desc: "Fuzzy socks, scented candles, hot chocolate, blanket.", price: { low: "GHS 60-100", medium: "GHS 150-250", high: "GHS 280-400", premium: null }, where: "Mr. Price, Game, Shoprite", tip: "Include Christmas movie list!" }
+                    ],
+                    fashionista: [
+                        { name: "Festive Jewelry", emoji: "✨", desc: "Elegant piece perfect for Christmas parties.", price: { low: "GHS 50-100", medium: "GHS 150-280", high: "GHS 300-500", premium: null }, where: "Jewelers, malls", tip: "Red or green accents for festive touch!" }
+                    ],
+                    kids: [
+                        { name: "Toy Wonderland Box", emoji: "🧸", desc: "Age-appropriate toys, games, and treats.", price: { low: "GHS 50-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Melcom, Game, toy stores", tip: "Wrap each item separately for more excitement!" }
+                    ],
+                    religious: [
+                        { name: "Devotional Gift Set", emoji: "✝️", desc: "Study Bible, devotional book, prayer journal.", price: { low: "GHS 50-100", medium: "GHS 120-220", high: null, premium: null }, where: "Christian bookshops, Challenge", tip: "Add bookmark with favorite verse!" }
+                    ]
+                },
+                male: {
+                    foodie: [
+                        { name: "Drinks & Cigars Box", emoji: "🥃", desc: "Premium whiskey or wine with quality cigars.", price: { low: null, medium: "GHS 200-350", high: "GHS 400-500", premium: "GHS 600+" }, where: "Palace, Shoprite, cigar lounges", tip: "Include quality lighter!" }
+                    ],
+                    techie: [
+                        { name: "Gadget Gift", emoji: "📱", desc: "Latest tech accessory or gadget he wants.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Telefonika, Franko, CompuGhana", tip: "Listen for hints all December!" }
+                    ],
+                    gamer: [
+                        { name: "Gaming Christmas Bundle", emoji: "🎮", desc: "New game, accessories, and gaming snacks.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Game stores, CompuGhana", tip: "Check his gaming wishlist!" }
+                    ]
+                }
+            },
+            easter: {
+                child: {
+                    kids: [
+                        { name: "Easter Egg Hunt Kit", emoji: "🥚", desc: "Chocolate eggs, bunny plush, Easter basket, treats.", price: { low: "GHS 40-80", medium: "GHS 100-180", high: "GHS 200-300", premium: null }, where: "Shoprite, Melcom, supermarkets", tip: "Hide eggs around the house for fun!" }
+                    ],
+                    religious: [
+                        { name: "Children's Easter Story Set", emoji: "✝️", desc: "Picture Bible, Easter story book, activity book.", price: { low: "GHS 30-60", medium: "GHS 80-150", high: null, premium: null }, where: "Christian bookshops", tip: "Age-appropriate stories!" }
+                    ]
+                },
+                female: {
+                    religious: [
+                        { name: "Devotional Easter Gift", emoji: "✝️", desc: "Easter devotional, prayer journal, inspirational book.", price: { low: "GHS 40-80", medium: "GHS 100-180", high: null, premium: null }, where: "Christian bookshops, Challenge", tip: "Include Easter lily!" }
+                    ],
+                    foodie: [
+                        { name: "Chocolate Indulgence Box", emoji: "🍫", desc: "Premium Easter chocolates and treats.", price: { low: "GHS 50-100", medium: "GHS 120-220", high: "GHS 250-350", premium: null }, where: "Shoprite, Melcom", tip: "Add wine for adults!" }
+                    ],
+                    gardener: [
+                        { name: "Spring Planting Set", emoji: "🌷", desc: "Potted flowers, seeds, gardening gloves, tools.", price: { low: "GHS 50-100", medium: "GHS 120-200", high: null, premium: null }, where: "Plant nurseries, garden stores", tip: "Choose bright spring colors!" }
+                    ]
+                }
+            },
+            wedding: {
+                couple: {
+                    traditional: [
+                        { name: "Kente Cloth Set", emoji: "🇬🇭", desc: "Matching premium kente for the couple.", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "Makola, Kejetia, Bonwire weavers", tip: "Ask about their wedding colors!" },
+                        { name: "Traditional Marriage Items", emoji: "🏛️", desc: "Items needed for traditional ceremony.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: null }, where: "Markets, specialized vendors", tip: "Coordinate with families!" }
+                    ],
+                    modern: [
+                        { name: "Kitchen Appliance Set", emoji: "🍳", desc: "High-quality blender, mixer, air fryer, or pressure cooker.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Melcom, Game, Shoprite", tip: "Check their registry or ask what they need!" },
+                        { name: "Premium Bedding Set", emoji: "🛏️", desc: "Luxury sheets, duvet, and pillow set.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Mr. Price Home, Game", tip: "Check their bedroom color scheme!" }
+                    ],
+                    homebody: [
+                        { name: "Home Décor Collection", emoji: "🖼️", desc: "Art, vases, decorative items for their new home.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Mr. Price Home, Melcom Home", tip: "Match their style - modern vs traditional!" }
+                    ],
+                    travelers: [
+                        { name: "Honeymoon Fund Contribution", emoji: "✈️", desc: "Cash gift toward their dream honeymoon.", price: { low: "GHS 100", medium: "GHS 200-300", high: "GHS 400-500", premium: "GHS 500+" }, where: "Direct gift / mobile money", tip: "Present in creative card!" },
+                        { name: "Matching Luggage Set", emoji: "🧳", desc: "Quality suitcase set for their travels.", price: { low: null, medium: null, high: "GHS 400-500", premium: "GHS 600+" }, where: "Game, malls, Jumia", tip: "Neutral colors work best!" }
+                    ],
+                    practical: [
+                        { name: "Cash/Mobile Money Gift", emoji: "💰", desc: "Most practical - let them buy what they need!", price: { low: "GHS 100", medium: "GHS 200-300", high: "GHS 400-500", premium: "GHS 500+" }, where: "Envelope / mobile money", tip: "Never goes wrong for Ghanaian weddings!" }
+                    ]
+                }
+            },
+            graduation: {
+                female: {
+                    professional: [
+                        { name: "Laptop Bag & Accessories", emoji: "💼", desc: "Elegant laptop bag with organizer, notebook, pen.", price: { low: null, medium: "GHS 150-280", high: "GHS 300-500", premium: null }, where: "Malls, leather shops", tip: "Match her style - modern vs classic!" },
+                        { name: "Professional Watch", emoji: "⌚", desc: "Elegant timepiece suitable for the workplace.", price: { low: null, medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Watch stores, Franko", tip: "Classic design lasts longest!" }
+                    ],
+                    entrepreneur: [
+                        { name: "Business Starter Kit", emoji: "💡", desc: "Planner, business books, quality pen, laptop stand.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Bookshops, office stores", tip: "Include inspirational business books!" }
+                    ]
+                },
+                male: {
+                    professional: [
+                        { name: "Executive Gift Set", emoji: "💼", desc: "Quality pen, leather portfolio, business card holder.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Office shops, malls", tip: "Engrave his name for personal touch!" },
+                        { name: "Professional Watch", emoji: "⌚", desc: "Classy timepiece for his new career.", price: { low: null, medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Watch stores", tip: "Classic steel looks professional!" }
+                    ],
+                    techie: [
+                        { name: "Tech Professional Kit", emoji: "💻", desc: "Quality laptop bag, mouse, hub, and accessories.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: null }, where: "CompuGhana, Telefonika", tip: "Check what he needs for his field!" }
+                    ]
+                }
+            },
+            baby: {
+                family: {
+                    practical: [
+                        { name: "Diaper & Essentials Hamper", emoji: "🍼", desc: "Diapers, wipes, creams, bottles - all the necessities.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Shoprite, Melcom, pharmacies", tip: "Size 1-2 diapers are most useful!" },
+                        { name: "Baby Clothing Bundle", emoji: "👶", desc: "Adorable outfits for 0-6 months.", price: { low: "GHS 50-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Baby shops, Melcom, Game", tip: "Get various sizes - babies grow fast!" }
+                    ],
+                    cute: [
+                        { name: "Plush & Blanket Set", emoji: "🧸", desc: "Soft toys, cozy blankets, and cute accessories.", price: { low: "GHS 50-100", medium: "GHS 120-220", high: null, premium: null }, where: "Baby shops, Melcom", tip: "Soft textures are best for babies!" }
+                    ],
+                    premium: [
+                        { name: "Baby Monitor System", emoji: "📹", desc: "Video baby monitor for peace of mind.", price: { low: null, medium: null, high: "GHS 350-500", premium: "GHS 600+" }, where: "Baby shops, Jumia, Telefonika", tip: "Night vision feature is essential!" }
+                    ],
+                    traditional: [
+                        { name: "Outdooring Ceremony Items", emoji: "🇬🇭", desc: "Traditional items for the naming ceremony.", price: { low: "GHS 60-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Markets, specialized vendors", tip: "Coordinate with family!" }
+                    ]
+                }
+            },
+            housewarming: {
+                couple: {
+                    practical: [
+                        { name: "Tool & Emergency Kit", emoji: "🔧", desc: "Essential tools, flashlight, first aid, batteries.", price: { low: "GHS 60-100", medium: "GHS 150-280", high: null, premium: null }, where: "Game, Melcom, hardware stores", tip: "Every new home needs these!" },
+                        { name: "Kitchen Starter Bundle", emoji: "🍳", desc: "Pots, pans, utensils essentials set.", price: { low: "GHS 80-100", medium: "GHS 180-300", high: "GHS 350-500", premium: null }, where: "Game, Melcom, Shoprite", tip: "Quality over quantity!" }
+                    ],
+                    decorative: [
+                        { name: "Wall Art Collection", emoji: "🖼️", desc: "Framed prints or canvas art for their walls.", price: { low: "GHS 50-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Art vendors, Mr. Price Home", tip: "Match their décor style!" }
+                    ],
+                    plants: [
+                        { name: "Indoor Garden Set", emoji: "🪴", desc: "Collection of easy-care plants with pots.", price: { low: "GHS 50-100", medium: "GHS 120-220", high: null, premium: null }, where: "Plant nurseries, markets", tip: "Include care guide!" }
+                    ],
+                    traditional: [
+                        { name: "Ghanaian Art Piece", emoji: "🎭", desc: "Traditional art, sculpture, or kente wall hanging.", price: { low: "GHS 60-100", medium: "GHS 150-300", high: "GHS 350-500", premium: null }, where: "Art Centre Accra, craft markets", tip: "Supports local artists!" }
+                    ]
+                }
+            },
+            condolence: {
+                family: {
+                    flowers: [
+                        { name: "Sympathy Arrangement", emoji: "💐", desc: "Elegant white/soft flower arrangement with condolence message.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Flower shops, Reapp", tip: "White lilies are traditional for sympathy." },
+                        { name: "Funeral Wreath", emoji: "🌸", desc: "Traditional wreath for the service.", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Funeral florists", tip: "Coordinate timing with service." }
+                    ],
+                    food: [
+                        { name: "Meal Support Package", emoji: "🍲", desc: "Groceries or prepared meals for the grieving family.", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 350-500", premium: null }, where: "Supermarkets, caterers", tip: "Practical help during difficult time." },
+                        { name: "Refreshments for Visitors", emoji: "🧺", desc: "Drinks, snacks, water for guests visiting.", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-450", premium: null }, where: "Shoprite, Melcom, MaxMart", tip: "Coordinate with family to avoid duplicates." }
+                    ],
+                    memorial: [
+                        { name: "Memorial Frame", emoji: "🖼️", desc: "Quality frame for displaying loved one's photo.", price: { low: "GHS 40-80", medium: "GHS 100-180", high: null, premium: null }, where: "Gift shops, malls", tip: "Get appropriate size photo dimensions." }
+                    ],
+                    donation: [
+                        { name: "Charity Donation", emoji: "💝", desc: "Donation to a cause meaningful to the deceased.", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Charities, directly to family", tip: "Ask family about meaningful causes." }
+                    ]
+                }
+            }
+        };
 
-        // Default romantic gifts for any interest
+        // Default fallback
         const defaultGifts = {
             female: [
-                { name: "Flower Bouquet & Chocolates", emoji: "💐", desc: "Classic Valentine's combo that never fails", price: { low: "GHS 80-100", medium: "GHS 150-250", high: "GHS 280-400", premium: "GHS 450+" }, where: "Flower shops, Shoprite, Melcom (nationwide)" },
-                { name: "Spa Gift Voucher", emoji: "💆‍♀️", desc: "Let her relax and feel pampered", price: { low: null, medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Spas in your city • We'll find the best one!" },
+                { name: "Gift Voucher", emoji: "🎁", desc: "Let her choose exactly what she wants!", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Various stores" }
             ],
             male: [
-                { name: "Watch & Cologne Set", emoji: "⌚", desc: "Timeless combo for the stylish man", price: { low: null, medium: "GHS 200-300", high: "GHS 350-500", premium: "GHS 600+" }, where: "Melcom, Shoprite, malls, Franko Trading (nationwide)" },
-                { name: "Experience Gift Card", emoji: "🎁", desc: "Restaurant, spa, or activity of choice", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Various stores in your city" },
+                { name: "Gift Voucher", emoji: "🎁", desc: "Let him choose exactly what he wants!", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Various stores" }
             ],
-            other: [
-                { name: "Personalized Gift Hamper", emoji: "🎁", desc: "Curated selection of their favorite things", price: { low: "GHS 80-100", medium: "GHS 150-280", high: "GHS 300-500", premium: "GHS 500+" }, where: "Custom made • Let us handle it!" },
+            couple: [
+                { name: "Cash/Mobile Money", emoji: "💰", desc: "Most practical - let them decide!", price: { low: "GHS 50-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Direct gift" }
+            ],
+            family: [
+                { name: "Family Gift Hamper", emoji: "🧺", desc: "Curated basket of treats and essentials.", price: { low: "GHS 80-100", medium: "GHS 150-300", high: "GHS 350-500", premium: "GHS 500+" }, where: "Custom assembled" }
+            ],
+            child: [
+                { name: "Toy & Treats Box", emoji: "🧸", desc: "Age-appropriate toys and snacks.", price: { low: "GHS 50-100", medium: "GHS 150-250", high: "GHS 280-400", premium: null }, where: "Toy stores, Melcom" }
             ]
         };
 
-        // Countdown to Valentine's Day
-        function updateCountdown() {
-            const valentines = new Date('2026-02-14T00:00:00');
-            const now = new Date();
-            const diff = valentines - now;
+        // =====================================================
+        // APP STATE
+        // =====================================================
+        let currentOccasion = 'valentine';
+        let isPlaying = false;
+        let currentTrack = 0;
+
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        const musicLabel = document.getElementById('musicLabel');
+
+        bgMusic.volume = 0.3;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const occasionParam = urlParams.get('occasion');
+            if (occasionParam && occasions[occasionParam]) {
+                currentOccasion = occasionParam;
+            }
             
+            switchOccasion(currentOccasion);
+            setupEventListeners();
+            createFloatingElements();
+        });
+
+        function setupEventListeners() {
+            document.querySelectorAll('.occasion-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const occasion = tab.dataset.occasion;
+                    switchOccasion(occasion);
+                    const url = new URL(window.location);
+                    url.searchParams.set('occasion', occasion);
+                    window.history.pushState({}, '', url);
+                });
+            });
+
+            musicToggle.addEventListener('click', toggleMusic);
+            bgMusic.addEventListener('ended', () => {
+                const config = occasions[currentOccasion];
+                if (config.music && config.music.length > 0) {
+                    currentTrack = (currentTrack + 1) % config.music.length;
+                    bgMusic.src = config.music[currentTrack];
+                    bgMusic.play();
+                }
+            });
+
+            document.getElementById('giftForm').addEventListener('submit', handleFormSubmit);
+            document.getElementById('leadForm').addEventListener('submit', handleLeadSubmit);
+        }
+
+        function switchOccasion(occasion) {
+            currentOccasion = occasion;
+            const config = occasions[occasion];
+
+            document.querySelectorAll('.occasion-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.occasion === occasion);
+            });
+
+            document.body.className = config.theme;
+            document.getElementById('logo').textContent = config.logo;
+            document.getElementById('title').textContent = config.title;
+            document.getElementById('subtitle').textContent = config.subtitle;
+            document.getElementById('formTitle').innerHTML = config.formTitle;
+            document.getElementById('resultsTitle').innerHTML = config.resultsTitle;
+            document.getElementById('loadingIcon').textContent = config.loadingIcon;
+            document.getElementById('loadingText').textContent = config.loadingText;
+            document.getElementById('submitBtn').innerHTML = config.submitBtn;
+
+            document.getElementById('interestsGroup').innerHTML = config.interests.map(i => `
+                <div class="checkbox-item">
+                    <input type="checkbox" id="${i.id}" name="interests" value="${i.id}">
+                    <label for="${i.id}">${i.label}</label>
+                </div>
+            `).join('');
+
+            document.getElementById('relationship').innerHTML = '<option value="">Select...</option>' + 
+                config.relationships.map(r => `<option value="${r.value}">${r.label}</option>`).join('');
+
+            const genderGroup = document.getElementById('genderGroup');
+            if (['wedding', 'housewarming'].includes(occasion)) {
+                document.getElementById('gender').value = 'couple';
+                genderGroup.style.display = 'none';
+            } else if (occasion === 'baby') {
+                document.getElementById('gender').value = 'family';
+                genderGroup.style.display = 'none';
+            } else {
+                genderGroup.style.display = 'block';
+                document.getElementById('gender').value = '';
+            }
+
+            const countdownBox = document.getElementById('countdownBox');
+            if (config.countdown) {
+                countdownBox.style.display = 'inline-block';
+                updateCountdown(config.countdown);
+            } else {
+                countdownBox.style.display = 'none';
+            }
+
+            const deliveryDate = document.getElementById('deliveryDate');
+            if (config.countdown) {
+                deliveryDate.value = config.countdown.date;
+            } else {
+                const nextWeek = new Date();
+                nextWeek.setDate(nextWeek.getDate() + 7);
+                deliveryDate.value = nextWeek.toISOString().split('T')[0];
+            }
+
+            document.getElementById('hiddenOccasion').value = occasion;
+
+            if (isPlaying) {
+                bgMusic.pause();
+                isPlaying = false;
+                musicLabel.textContent = 'Play Music';
+                musicToggle.classList.remove('playing');
+            }
+            currentTrack = 0;
+
+            createFloatingElements();
+            showForm();
+        }
+
+        function createFloatingElements() {
+            const container = document.getElementById('floatingBg');
+            container.innerHTML = '';
+            const config = occasions[currentOccasion];
+            const emojis = config.floatingEmojis;
+
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                element.style.left = Math.random() * 100 + '%';
+                element.style.animationDelay = Math.random() * 6 + 's';
+                element.style.fontSize = (15 + Math.random() * 20) + 'px';
+                container.appendChild(element);
+            }
+        }
+
+        function updateCountdown(countdownConfig) {
+            const targetDate = new Date(countdownConfig.date + 'T00:00:00');
+            const now = new Date();
+            const diff = targetDate - now;
+
+            const countdownEl = document.getElementById('countdown');
+            
+            if (diff <= 0) {
+                countdownEl.textContent = "It's here! 🎉";
+                return;
+            }
+
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            
+
             if (days > 0) {
-                document.getElementById('countdown').textContent = `${days} days, ${hours} hours`;
-            } else if (hours > 0) {
-                document.getElementById('countdown').textContent = `${hours} hours`;
+                countdownEl.textContent = `${days}d ${hours}h ${countdownConfig.label}`;
             } else {
-                document.getElementById('countdown').textContent = `It's Valentine's Day! 💕`;
+                countdownEl.textContent = `${hours}h ${countdownConfig.label}`;
             }
         }
-        updateCountdown();
-        setInterval(updateCountdown, 60000);
 
-        // Floating Hearts
-        function createHearts() {
-            const container = document.getElementById('heartsBg');
-            const hearts = ['💕', '💝', '💖', '💗', '❤️', '💘', '💓'];
-            
-            for (let i = 0; i < 15; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 6 + 's';
-                heart.style.fontSize = (15 + Math.random() * 20) + 'px';
-                container.appendChild(heart);
+        setInterval(() => {
+            const config = occasions[currentOccasion];
+            if (config.countdown) updateCountdown(config.countdown);
+        }, 60000);
+
+        function toggleMusic() {
+            const config = occasions[currentOccasion];
+            if (!config.music || config.music.length === 0) {
+                alert('No music for this occasion yet!');
+                return;
             }
+            if (isPlaying) {
+                bgMusic.pause();
+                musicLabel.textContent = 'Play Music';
+                musicToggle.classList.remove('playing');
+            } else {
+                bgMusic.src = config.music[currentTrack];
+                bgMusic.play();
+                musicLabel.textContent = 'Playing';
+                musicToggle.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
         }
-        createHearts();
 
-        // Form Submission
-        document.getElementById('giftForm').addEventListener('submit', function(e) {
+        function handleFormSubmit(e) {
             e.preventDefault();
-            
-            // Get form values
             const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
-            const gender = document.getElementById('gender').value;
-            const relationship = document.getElementById('relationship').value;
+            let gender = document.getElementById('gender').value;
             const budget = document.getElementById('budget').value;
-            const extra = document.getElementById('extra').value;
 
-            // Show loading
+            if (['wedding', 'housewarming'].includes(currentOccasion)) gender = 'couple';
+            if (currentOccasion === 'baby') gender = 'family';
+
             document.getElementById('formSection').style.display = 'none';
             document.getElementById('loading').style.display = 'block';
 
-            // Simulate loading then show results
             setTimeout(() => {
-                generateResults(interests, gender, relationship, budget, extra);
+                generateResults(interests, gender, budget);
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('results').style.display = 'block';
             }, 1500);
-        });
+        }
 
-        function generateResults(interests, gender, relationship, budget, extra) {
+        function generateResults(interests, gender, budget) {
             const resultsContainer = document.getElementById('giftResults');
             resultsContainer.innerHTML = '';
 
             let selectedGifts = [];
-            const genderGifts = gifts[gender] || gifts.female;
+            const occasionGifts = giftDatabase[currentOccasion] || {};
+            const genderGifts = occasionGifts[gender] || occasionGifts.couple || occasionGifts.family || {};
 
-            // Get gifts based on interests
             if (interests.length > 0) {
                 interests.forEach(interest => {
                     if (genderGifts[interest]) {
                         genderGifts[interest].forEach(gift => {
-                            if (gift.price[budget]) {
-                                selectedGifts.push(gift);
-                            }
+                            if (gift.price[budget]) selectedGifts.push(gift);
                         });
                     }
                 });
             }
 
-            // Add defaults if not enough gifts
             if (selectedGifts.length < 3) {
                 const defaults = defaultGifts[gender] || defaultGifts.female;
                 defaults.forEach(gift => {
@@ -824,37 +1600,77 @@
                 });
             }
 
-            // Shuffle and take top 4
             selectedGifts = selectedGifts.sort(() => Math.random() - 0.5).slice(0, 4);
 
-            // If still no gifts, show budget-appropriate defaults
             if (selectedGifts.length === 0) {
-                selectedGifts = [
-                    { name: "Custom Gift Hamper", emoji: "🎁", desc: "We'll curate the perfect selection based on your details!", price: { [budget]: "Within your budget" }, where: "Let Tuff handle it!" }
-                ];
+                selectedGifts = [{
+                    name: "Custom Gift Service",
+                    emoji: "🎁",
+                    desc: "Tell us what you need and we'll source it!",
+                    price: { [budget]: "Within your budget" },
+                    where: "We handle everything!"
+                }];
             }
 
-            // Render gifts
             selectedGifts.forEach(gift => {
                 const card = document.createElement('div');
                 card.className = 'gift-card';
-                card.innerHTML = `
+                let html = `
                     <h3>${gift.emoji} ${gift.name}</h3>
                     <p>${gift.desc}</p>
                     <div class="price">${gift.price[budget]}</div>
-                    <div class="where">📍 Where: ${gift.where}</div>
+                    <div class="where">📍 ${gift.where}</div>
                 `;
+                if (gift.tip) {
+                    html += `<div class="tip">💡 Tip: ${gift.tip}</div>`;
+                }
+                card.innerHTML = html;
                 resultsContainer.appendChild(card);
             });
 
-            // Update WhatsApp link
-            const message = encodeURIComponent(`Hi! I'm looking for a Valentine's gift 💝\n\nBudget: ${budget}\nFor: ${gender}\nInterests: ${interests.join(', ') || 'Not specified'}\n\nCan you help me get something special?`);
-            document.getElementById('whatsappLink').href = `https://wa.me/233248560363?text=${message}`;
+            document.getElementById('hiddenPrefs').value = `Occasion: ${currentOccasion} | Budget: ${budget} | For: ${gender} | Interests: ${interests.join(', ') || 'General'}`;
         }
 
         function showForm() {
             document.getElementById('results').style.display = 'none';
             document.getElementById('formSection').style.display = 'block';
+            document.getElementById('leadSuccess').style.display = 'none';
+            document.getElementById('leadCapture').style.display = 'block';
+        }
+
+        function handleLeadSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('leadCapture').style.display = 'none';
+                    document.getElementById('leadSuccess').style.display = 'block';
+                } else {
+                    openWhatsAppFallback(formData);
+                }
+            })
+            .catch(() => openWhatsAppFallback(formData));
+        }
+
+        function openWhatsAppFallback(formData) {
+            const msg = encodeURIComponent(
+                `🎁 PINIGIFTS REQUEST\n\n` +
+                `Occasion: ${formData.get('occasion')}\n` +
+                `Name: ${formData.get('name')}\n` +
+                `Phone: ${formData.get('phone')}\n` +
+                `Location: ${formData.get('location')}\n` +
+                `Delivery: ${formData.get('delivery_date')}\n` +
+                `Preferences: ${formData.get('gift_preferences')}\n` +
+                `Notes: ${formData.get('notes') || 'None'}`
+            );
+            window.open(`https://wa.me/233248560363?text=${msg}`, '_blank');
         }
     </script>
 </body>
